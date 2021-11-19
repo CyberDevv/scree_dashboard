@@ -21,8 +21,15 @@ module.exports = {
             light: '#E8D3B7',
             lightest: '#FEEBE6',
          },
+         white: '#fff',
+         black: '#000',
+         dark: '#303030'
       },
-      extend: {},
+      extend: {
+         // backgroundImage: {
+         //    'auth-pattern': "url('/public/svg/bgPattern.svg')",
+         // },
+      },
    },
    variants: {
       extend: {},

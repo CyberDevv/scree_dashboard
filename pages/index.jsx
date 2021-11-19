@@ -9,4 +9,4 @@ export default function Home() {
 }
 
 // Tailwind styles
-const Title = tw.h2`text-5xl text-blue-800`;
+const Title = tw.h2`text-5xl text-primary-dark`;
