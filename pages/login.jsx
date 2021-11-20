@@ -6,7 +6,7 @@ const LoginPage = () => {
    return (
       <>
          <Head>
-            <title>Sign up</title>
+            <title>Login | Scree Dashboard</title>
          </Head>
 
          <Login />

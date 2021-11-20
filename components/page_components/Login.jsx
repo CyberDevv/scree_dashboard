@@ -74,7 +74,7 @@ const ButtonWrapper = tw(
 )`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center mt-10 duration-300 transition-all mt-20`;
 // const ButtonText = tw.p`text-white text-center w-full py-2.5`;
 const TempAnchor = tw.a`text-white text-center w-full py-2.5`;
-const Form = tw.form`mt-20 space-y-12`;
+const Form = tw.form`mt-20 space-y-12 w-full`;
 const ShowHide = tw.button`px-2 text-left`;
 const ForgotPassword = tw.div`w-full text-left mt-9`;
 const Span = tw.span`text-secondary-darkest`;
