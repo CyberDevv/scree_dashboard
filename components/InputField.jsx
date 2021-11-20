@@ -1,9 +1,9 @@
 import tw from 'twin.macro';
 
-const InputField = ({ label, type, onChange, value, children }) => {
+const InputField = ({ label, type, onChange, value, children, placeholder }) => {
    return (
       <InputWrapper>
-         <Input type={type} onChange={onChange} value={value} className= "small" />
+         <Input type={type} onChange={onChange} value={value} className= "small" placeholder= {placeholder} />
          <Label className='pretext' htmlFor='text'>
             {label}
          </Label>

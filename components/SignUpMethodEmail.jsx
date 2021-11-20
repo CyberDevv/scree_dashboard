@@ -5,16 +5,14 @@ import { useState } from 'react';
 import Show from '../public/svg/show.svg';
 import Hide from '../public/svg/hide.svg';
 import InputField from '../components/InputField.jsx';
-import BackShowHide from '../public/svg/Arrow - Left Square.svg';
 import { Button } from '../components/TailwindStyles.jsx';
+import BackShowHide from '../public/svg/Arrow - Left Square.svg';
 
 const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [passwordShown, setPasswordShown] = useState(false);
-
-   // const handle
 
    return (
       <div>

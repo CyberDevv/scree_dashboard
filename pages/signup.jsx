@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import Signup from '../components/page_components/Signup.jsx'
 
-const signup = () => {
+const SignupPage = () => {
   return (
      <>
         <Head>
@@ -14,4 +14,4 @@ const signup = () => {
   );
 }
 
-export default signup
+export default SignupPage
