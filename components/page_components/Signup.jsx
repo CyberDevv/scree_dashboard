@@ -6,7 +6,7 @@ import SignUpMethods from '../../components/SignupMethods.jsx';
 import SignUpMethodEmail from '../../components/SignUpMethodEmail.jsx';
 
 const Signup = () => {
-   const [signupClicked, setSignupClicked] = useState(false);
+   const [signupClicked, setSignupClicked] = useState(true);
 
    return (
       <MainWrapper>

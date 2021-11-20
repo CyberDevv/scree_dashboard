@@ -63,7 +63,8 @@ h6 {
 .small {
   font-size: 14px !important;
   font-weight: 400 !important;
-  line-height: 140% !important;
+  line-height: 22.4px !important;
+  letter-spacing: 0.01em;
 }
 
 .tiny {
@@ -75,8 +76,8 @@ h6 {
 .pretext {
   font-size: 10px !important;
   font-weight: 400 !important;
-  line-height: 140% !important;
-  letter-spacing: 2.5% !important;
+  line-height: 14px !important;
+  letter-spacing: 0.025em !important;
 }
 
 .pattern {
