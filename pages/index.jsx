@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import Head from 'next/head';
 
 import Dashboard from '../components/page_components/Dashboard.jsx';

@@ -1,5 +1,10 @@
+:root {
+   --bg-color: #fafafa;
+}
+
 body {
    font-family: 'Inter', sans-serif !important;
+   background-color: var(--bg-color) !important;
 }
 
 h1 {
@@ -26,14 +31,14 @@ h3 {
 h4 {
    font-size: 32px !important;
    font-weight: 700 !important;
-   line-height: 140% !important;
+   line-height: 20px !important;
    letter-spacing: 0.005em !important;
 }
 
 h5 {
    font-size: 24px !important;
    font-weight: 700 !important;
-   line-height: 140% !important;
+   line-height: 20px !important;
 }
 
 h6 {
@@ -45,19 +50,19 @@ h6 {
 .bodyBold {
    font-size: 16px !important;
    font-weight: 700 !important;
-   line-height: 140% !important;
+   line-height: 20px !important;
 }
 
 .smallBold {
    font-size: 14px !important;
    font-weight: 600 !important;
-   line-height: 140% !important;
+   line-height: 20px !important;
 }
 
 .body {
    font-size: 16px !important;
    font-weight: 400 !important;
-   line-height: 140% !important;
+   line-height: 20px !important;
 }
 
 .small {
@@ -70,7 +75,7 @@ h6 {
 .tiny {
    font-size: 12px !important;
    font-weight: 400 !important;
-   line-height: 140% !important;
+   line-height: 20px !important;
 }
 
 .pretext {
@@ -85,7 +90,7 @@ h6 {
 }
 
 .active {
-   background-color: white;
+   background-color: var(--bg-color);
    border-top-left-radius: 9999px;
    border-bottom-left-radius: 9999px;
 }
@@ -103,7 +108,7 @@ h6 {
    -o-border-radius: 9999px;
    top: -4rem;
    right: 0;
-   box-shadow: 35px 35px 0 5px white;
+   box-shadow: 35px 35px 0 5px var(--bg-color);
 }
 
 .active::before {
@@ -119,5 +124,5 @@ h6 {
    -o-border-radius: 9999px;
    bottom: -4rem;
    right: 0;
-   box-shadow: 35px -35px 0 5px white;
+   box-shadow: 35px -35px 0 5px var(--bg-color);
 }

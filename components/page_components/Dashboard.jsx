@@ -1,13 +1,14 @@
 import tw from 'twin.macro';
 
 import SideBar from '../SideBar.jsx';
+import MainDashboard from '../MainDashboard.jsx';
 
 const Dashboard = () => {
    return (
       <MainWrapper>
          <InnerWrapper>
             <SideBar />
-            <span>Dashboard</span>
+            <MainDashboard />
          </InnerWrapper>
       </MainWrapper>
    );
@@ -15,6 +16,6 @@ const Dashboard = () => {
 
 // Tailwind Styles
 const MainWrapper = tw.div`p-7 h-screen min-h-screen`;
-const InnerWrapper = tw.div`flex space-x-4 h-full`;
+const InnerWrapper = tw.div`flex space-x-8 h-full`;
 
 export default Dashboard;

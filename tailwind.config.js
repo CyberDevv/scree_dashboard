@@ -23,7 +23,8 @@ module.exports = {
          },
          white: '#fff',
          black: '#000',
-         dark: '#303030'
+         dark: '#303030',
+         light: '##E5E5E5',
       },
       extend: {
          // backgroundImage: {
