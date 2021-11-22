@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 
-const Dashboard = ({ children }) => {
-   return <MainWrapper>{children}</MainWrapper>;
+const Dashboard = ({ onClick, children }) => {
+   return <MainWrapper onClick= {onClick}>{children}</MainWrapper>;
 };
 
 // Tailwind Styles
