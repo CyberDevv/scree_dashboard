@@ -9,6 +9,7 @@ import {
 
 import Task from './Task.jsx';
 import NavBar from './NavBar.jsx';
+import Graph from './Graph.jsx';
 import UnCheckedSVG from '../public/svg/unchecked.svg';
 import ProgressProvider from '../utils/ProgressProvider.js';
 import ExternalLinkSVG from '../public/svg/toexternallink.svg';
@@ -33,9 +34,29 @@ const MainDashboard = () => {
       },
    ]);
 
+   // function to toggle the input for adding tasks
    const handleAddTask = () => {
       setAddTask(!addTask);
-      // const newTasks = [...tasks]
+   };
+
+   // Function to handle on enter key press on add task input
+   const handleOnEnter = (e) => {
+      if (e.key === 'Enter') {
+         const newTask = e.target.value;
+         const newTasks = [...tasks];
+
+         let id = 3;
+
+         newTasks.push({
+            id: id,
+            completed: false,
+            task: newTask,
+         });
+
+         id++;
+         setTasks(newTasks);
+         setAddTask(false);
+      }
    };
 
    return (
@@ -77,6 +98,22 @@ const MainDashboard = () => {
                      />
                   </ImageWrapper>
                </DeviceDownload>
+
+               {/* Analytics */}
+               <AnalyticsWrapper>
+                  <AnalyticsNav>
+                     <AnalyticsText>Analytics</AnalyticsText>
+                     <SelectWrapper>
+                        <Select>
+                           <Option value='Days'>Days</Option>
+                           <Option value='Weeks'>Weeks</Option>
+                           <Option value='Months'>Months</Option>
+                           <Option value='Years'>Years</Option>
+                        </Select>
+                     </SelectWrapper>
+                  </AnalyticsNav>
+                  <Graph />
+               </AnalyticsWrapper>
             </Main>
 
             {/* Aside */}
@@ -158,6 +195,7 @@ const MainDashboard = () => {
                            <InputAddTask
                               type='text'
                               placeholder='Add your task'
+                              onKeyDown={handleOnEnter}
                            />
                         </EachTaskWrapper>
                      )}
@@ -198,5 +236,11 @@ const AddTask = tw.button`text-primary-light hover:text-primary-dark transition-
 const Tasks = tw.div`mt-5`;
 const InputAddTask = tw.input`border-2 border-textBg-lightest rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-textBg-light text-textBg-light`;
 const EachTaskWrapper = tw.div`flex space-x-4 mb-4 items-center`;
+const AnalyticsWrapper = tw.div`bg-white rounded-2xl px-5 py-4`;
+const AnalyticsNav = tw.div`flex items-center justify-between`;
+const SelectWrapper = tw.div`relative`;
+const Select = tw.select`border-2 rounded-md border-textBg-dark bg-white px-2 py-2 text-textBg-dark focus:outline-none focus:ring-2 focus:ring-textBg-dark`;
+const Option = tw.option`text-textBg-dark`;
+const AnalyticsText = tw.p`font-normal text-xl`
 
 export default MainDashboard;
