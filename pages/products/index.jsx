@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Products from '../components/page_components/Products.jsx';
+import Products from '../../components/page_components/Products.jsx';
 
 export default function Home() {
    return (

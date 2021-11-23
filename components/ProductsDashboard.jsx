@@ -1,4 +1,5 @@
 import tw from 'twin.macro';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import Products from './Products.jsx';
@@ -60,9 +61,13 @@ const ProductsDashboard = () => {
 
             <NavButtonWrapper className='smallBold'>
                <NavButton1>Inventory</NavButton1>
-               <NavButton2>
-                  <Span>Add Product</Span> <PlusSVG />
-               </NavButton2>
+               <Link href='/products/add-product'>
+                  <a>
+                     <NavButton2>
+                        <Span>Add Product</Span> <PlusSVG />
+                     </NavButton2>
+                  </a>
+               </Link>
             </NavButtonWrapper>
          </NavWrapper>
 
