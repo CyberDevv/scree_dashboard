@@ -1,8 +1,12 @@
 import DashBoardPageSetup from '../DashBoardPageSetup.jsx';
-import MainDashboard from '../MainDashboard.jsx';
+import ProductsDashboard from '../ProductsDashboard.jsx';
 
 const Dashboard = () => {
-   return <DashBoardPageSetup>Products</DashBoardPageSetup>;
+   return (
+      <DashBoardPageSetup>
+         <ProductsDashboard />
+      </DashBoardPageSetup>
+   );
 };
 
 export default Dashboard;

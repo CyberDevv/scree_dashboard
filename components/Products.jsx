@@ -79,7 +79,7 @@ const MainWrapper = tw.div``;
 const Nav = tw.div`bg-primary-sky flex items-center space-x-4 p-4 mt-6`;
 const Ul = tw.div`grid grid-template-columns[0.2fr 0.5fr 2.2fr 1.2fr 1.2fr 0.2fr] gap-2  w-full items-center`;
 const Li = tw.div`text-textBg-light`;
-const SubLi = tw.div`text-textBg-dark`;
+const SubLi = tw.div`text-textBg-darkest`;
 const Product = tw.div`flex items-center space-x-4 p-4`;
 const ImageWrapper = tw.div`rounded-full w-[44px] h-[44px] relative`;
 

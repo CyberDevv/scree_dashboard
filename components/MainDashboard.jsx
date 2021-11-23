@@ -10,7 +10,6 @@ import {
 import Task from './Task.jsx';
 import Graph from './Graph.jsx';
 import Products from './Products.jsx';
-import NavBar from './NavBar.jsx';
 import UnCheckedSVG from '../public/svg/unchecked.svg';
 import ProgressProvider from '../utils/ProgressProvider.js';
 import ExternalLinkSVG from '../public/svg/toexternallink.svg';
@@ -89,9 +88,7 @@ const MainDashboard = () => {
    };
 
    return (
-      <MainWrapper>
-         <NavBar />
-
+      <>
          <Section>
             {/* Main view */}
             <Main>
@@ -153,7 +150,7 @@ const MainDashboard = () => {
                      </AddNew>
                   </ProductNav>
 
-                  <Products products= {products} />
+                  <Products products={products} />
                </ProductWrapper>
             </Main>
 
@@ -244,7 +241,7 @@ const MainDashboard = () => {
                </Wrapper>
             </Aside>
          </Section>
-      </MainWrapper>
+      </>
    );
 };
 
