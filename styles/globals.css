@@ -93,6 +93,7 @@ h6 {
    background-color: var(--bg-color);
    border-top-left-radius: 9999px;
    border-bottom-left-radius: 9999px;
+   z-index: -1;
 }
 
 .active::after {
@@ -127,6 +128,28 @@ h6 {
    box-shadow: 35px -35px 0 5px var(--bg-color);
 }
 
+.active a {
+   fill: #0e122f;
+}
+
+.svg {
+   z-index: 10px;
+   fill: white;
+   transition: fill 0.3s ease-in-out;
+   -webkit-transition: fill 0.3s ease-in-out;
+   -moz-transition: fill 0.3s ease-in-out;
+   -ms-transition: fill 0.3s ease-in-out;
+   -o-transition: fill 0.3s ease-in-out;
+}
+
+.active .svg:hover {
+   fill: #0e122f;
+}
+
+.svg:hover {
+   fill: #fa5020;
+}
+
 .productImage {
    border-radius: 9999px;
    -webkit-border-radius: 9999px;
@@ -135,12 +158,4 @@ h6 {
    -o-border-radius: 9999px;
    object-fit: cover;
    object-position: center center;
-}
-
-.active a {
-   fill: #0e122f;
-}
-
-.svg {
-   fill: white;
 }
