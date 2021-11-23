@@ -136,3 +136,11 @@ h6 {
    object-fit: cover;
    object-position: center center;
 }
+
+.active a {
+   fill: #0e122f;
+}
+
+.svg {
+   fill: white;
+}

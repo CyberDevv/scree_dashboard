@@ -1,24 +1,12 @@
-import tw from 'twin.macro';
-
-import SideBar from '../SideBar.jsx';
 import MainDashboard from '../MainDashboard.jsx';
+import DashBoardPageSetup from '../DashBoardPageSetup.jsx'
 
 const Dashboard = () => {
    return (
-      <MainWrapper>
-         <InnerWrapper>
-            <Relative>
-               <SideBar />
-            </Relative>
+      <DashBoardPageSetup>
             <MainDashboard />
-         </InnerWrapper>
-      </MainWrapper>
+      </DashBoardPageSetup>
    );
 };
-
-// Tailwind Styles
-const MainWrapper = tw.div`p-7 h-screen min-h-screen`;
-const InnerWrapper = tw.div`flex space-x-8 h-full`;
-const Relative = tw.div`relative w-[135px]`;
 
 export default Dashboard;
