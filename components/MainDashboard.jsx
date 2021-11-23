@@ -8,8 +8,9 @@ import {
 } from 'react-circular-progressbar';
 
 import Task from './Task.jsx';
-import NavBar from './NavBar.jsx';
 import Graph from './Graph.jsx';
+import Products from './Products.jsx';
+import NavBar from './NavBar.jsx';
 import UnCheckedSVG from '../public/svg/unchecked.svg';
 import ProgressProvider from '../utils/ProgressProvider.js';
 import ExternalLinkSVG from '../public/svg/toexternallink.svg';
@@ -34,9 +35,37 @@ const MainDashboard = () => {
       },
    ]);
 
+   const [products, setProducts] = useState([
+      {
+         id: 1,
+         image: 'https://images.pexels.com/photos/5081399/pexels-photo-5081399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+         name: 'Ipad Pro 2017 Model',
+         type: 'piant pot',
+         price: 10000,
+      },
+      {
+         id: 2,
+         image: 'https://images.pexels.com/photos/698170/pexels-photo-698170.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+         name: 'Coach Tabby 26 for sale',
+         type: 'piant curtain',
+         price: 4500,
+      },
+      {
+         id: 3,
+         image: 'https://images.pexels.com/photos/4048419/pexels-photo-4048419.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+         name: 'Samsung S34',
+         type: 'piant Shit',
+         price: 50000,
+      },
+   ]);
+
    // function to toggle the input for adding tasks
    const handleAddTask = () => {
       setAddTask(!addTask);
+   };
+
+   const handleAddProduct = () => {
+      //
    };
 
    // Function to handle on enter key press on add task input
@@ -100,8 +129,8 @@ const MainDashboard = () => {
                </DeviceDownload>
 
                {/* Analytics */}
-               <AnalyticsWrapper>
-                  <AnalyticsNav>
+               <Wrapper>
+                  <SectionNav>
                      <AnalyticsText>Analytics</AnalyticsText>
                      <SelectWrapper>
                         <Select>
@@ -111,9 +140,21 @@ const MainDashboard = () => {
                            <Option value='Years'>Years</Option>
                         </Select>
                      </SelectWrapper>
-                  </AnalyticsNav>
+                  </SectionNav>
                   <Graph />
-               </AnalyticsWrapper>
+               </Wrapper>
+
+               {/* Products */}
+               <ProductWrapper>
+                  <ProductNav>
+                     <p className='smallBold'>Products</p>
+                     <AddNew className='small' onClick={handleAddProduct}>
+                        Add new
+                     </AddNew>
+                  </ProductNav>
+
+                  <Products products= {products} />
+               </ProductWrapper>
             </Main>
 
             {/* Aside */}
@@ -178,13 +219,13 @@ const MainDashboard = () => {
                </SiteView>
 
                {/* Tasks */}
-               <TaskWrapper>
-                  <TasksNav>
+               <Wrapper>
+                  <SectionNav>
                      <p className='smallBold'>Tasks</p>
-                     <AddTask className='small' onClick={handleAddTask}>
+                     <AddNew className='small' onClick={handleAddTask}>
                         Add new
-                     </AddTask>
-                  </TasksNav>
+                     </AddNew>
+                  </SectionNav>
 
                   <Tasks>
                      <Task setTasks={setTasks} tasks={tasks} />
@@ -200,7 +241,7 @@ const MainDashboard = () => {
                         </EachTaskWrapper>
                      )}
                   </Tasks>
-               </TaskWrapper>
+               </Wrapper>
             </Aside>
          </Section>
       </MainWrapper>
@@ -230,17 +271,17 @@ const ExternalAnchor = tw.a`text-textBg-lightest flex items-center`;
 const SVG = tw.i`ml-2`;
 const ViewSite = tw.button`bg-secondary-darkest transition duration-300 text-white rounded-full px-4 py-2 hover:ring hover:ring-offset-2 hover:ring-secondary-darkest`;
 const SiteStatus = tw.p`text-textBg-light`;
-const TaskWrapper = tw.div`bg-white rounded-2xl px-5 py-4`;
-const TasksNav = tw.div`flex items-center justify-between`;
-const AddTask = tw.button`text-primary-light hover:text-primary-dark transition-colors duration-300`;
+const AddNew = tw.button`text-primary-light hover:text-primary-dark transition-colors duration-300`;
 const Tasks = tw.div`mt-5`;
 const InputAddTask = tw.input`border-2 border-textBg-lightest rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-textBg-light text-textBg-light`;
 const EachTaskWrapper = tw.div`flex space-x-4 mb-4 items-center`;
-const AnalyticsWrapper = tw.div`bg-white rounded-2xl px-5 py-4`;
-const AnalyticsNav = tw.div`flex items-center justify-between`;
+const Wrapper = tw.div`bg-white rounded-2xl px-5 py-4`;
+const SectionNav = tw.div`flex items-center justify-between`;
 const SelectWrapper = tw.div`relative`;
 const Select = tw.select`border-2 rounded-md border-textBg-dark bg-white px-2 py-2 text-textBg-dark focus:outline-none focus:ring-2 focus:ring-textBg-dark`;
 const Option = tw.option`text-textBg-dark`;
-const AnalyticsText = tw.p`font-normal text-xl`
+const AnalyticsText = tw.p`font-normal text-xl`;
+const ProductWrapper = tw(Wrapper)`px-0`;
+const ProductNav = tw(SectionNav)`px-4`;
 
 export default MainDashboard;

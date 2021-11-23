@@ -7,7 +7,9 @@ const Dashboard = () => {
    return (
       <MainWrapper>
          <InnerWrapper>
-            <SideBar />
+            <Relative>
+               <SideBar />
+            </Relative>
             <MainDashboard />
          </InnerWrapper>
       </MainWrapper>
@@ -17,5 +19,6 @@ const Dashboard = () => {
 // Tailwind Styles
 const MainWrapper = tw.div`p-7 h-screen min-h-screen`;
 const InnerWrapper = tw.div`flex space-x-8 h-full`;
+const Relative = tw.div`relative w-[135px]`;
 
 export default Dashboard;

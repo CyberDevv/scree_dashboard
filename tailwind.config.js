@@ -8,6 +8,7 @@ module.exports = {
             dark: '#25307E',
             light: '#4252C7',
             lightest: '#919ADE',
+            sky: '#F7F8FD',
          },
          textBg: {
             darkest: '#121212',

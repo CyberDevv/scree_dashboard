@@ -126,3 +126,13 @@ h6 {
    right: 0;
    box-shadow: 35px -35px 0 5px var(--bg-color);
 }
+
+.productImage {
+   border-radius: 9999px;
+   -webkit-border-radius: 9999px;
+   -moz-border-radius: 9999px;
+   -ms-border-radius: 9999px;
+   -o-border-radius: 9999px;
+   object-fit: cover;
+   object-position: center center;
+}

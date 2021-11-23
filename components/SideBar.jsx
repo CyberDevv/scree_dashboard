@@ -62,7 +62,7 @@ const Dashboard = () => {
 };
 
 // Tailwind Styles
-const MainWrapper = tw.div`bg-primary-darkest h-full text-white flex flex-col justify-between rounded-[32px] pl-5 py-14 min-w-[120px] w-[120px] overflow-x-hidden`;
+const MainWrapper = tw.div`fixed bg-primary-darkest h-[calc(100vh - 52px)] text-white flex flex-col justify-between rounded-[32px] pl-5 py-14 min-w-[120px] w-[120px] overflow-x-hidden`;
 const NavMenu = tw.ul`mt-8`;
 const NavItem = tw.div`pl-6 py-[1.1rem] relative`;
 const LogoutWrapper = tw(NavItem)``;
