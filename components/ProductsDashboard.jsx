@@ -1,6 +1,7 @@
 import tw from 'twin.macro';
 import Link from 'next/link';
 import { useState } from 'react';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 import Products from './Products.jsx';
 import { Button } from './TailwindStyles';
@@ -51,6 +52,18 @@ const ProductsDashboard = () => {
          price: 50000,
       },
    ]);
+
+   const [collection, setCollection] = React.useState('');
+   const [filter, setFilter] = React.useState('');
+
+   const handleCollectionChange = (event) => {
+      setCollection(event.target.value);
+   };
+
+   const handleFilterChange = (event) => {
+      setFilter(event.target.value);
+   };
+
    return (
       <>
          {/* Nav */}
@@ -73,18 +86,43 @@ const ProductsDashboard = () => {
 
          {/* Filter */}
          <FilterWrapper>
+            {/* Collections */}
             <FillterInnerWrapper>
                <FilterHeader className='small'>Collections:</FilterHeader>
-               <select>
-                  <option value='...'>All</option>
-               </select>
+               <FormControl sx={{ minWidth: 120 }}>
+                  <Select
+                     value={collection}
+                     onChange={handleCollectionChange}
+                     displayEmpty
+                     // inputProps={{ 'aria-label': 'Without label' }}
+                     sx={{ borderRadius: 9999 }}
+                  >
+                     <MenuItem value=''>All Products</MenuItem>
+                     <MenuItem sx={{ color: '#929292' }} value={10}>
+                        Collection 1
+                     </MenuItem>
+                     <MenuItem sx={{color: '#929292'}} value={20}>Collection 2</MenuItem>
+                     <MenuItem sx={{color: '#929292'}} value={30}>Collection 3</MenuItem>
+                  </Select>
+               </FormControl>
             </FillterInnerWrapper>
 
             <FillterInnerWrapper>
                <FilterHeader className='small'>Filters:</FilterHeader>
-               <select>
-                  <option value='...'>All</option>
-               </select>
+               <FormControl sx={{ minWidth: 120 }}>
+                  <Select
+                     value={filter}
+                     onChange={handleFilterChange}
+                     displayEmpty
+                     // inputProps={{ 'aria-label': 'Without label' }}
+                     sx={{ borderRadius: 9999 }}
+                  >
+                     <MenuItem value=''>All Products</MenuItem>
+                     <MenuItem sx={{color: '#929292'}} value={10}>In stock</MenuItem>
+                     <MenuItem sx={{color: '#929292'}} value={20}>Digital</MenuItem>
+                     <MenuItem sx={{color: '#929292'}} value={30}>Out of stock</MenuItem>
+                  </Select>
+               </FormControl>
             </FillterInnerWrapper>
          </FilterWrapper>
 
@@ -107,7 +145,7 @@ const NavButton2 = tw(
    NavButton
 )`bg-primary-darkest text-white flex items-center justify-center space-x-4`;
 const Span = tw.span``;
-const FilterWrapper = tw.div`flex justify-end space-x-4 items-center my-12`;
+const FilterWrapper = tw.div`flex justify-end space-x-8 items-center my-12`;
 const FillterInnerWrapper = tw.div`flex items-center space-x-4`;
 const FilterHeader = tw.div``;
 
