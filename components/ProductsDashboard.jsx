@@ -101,8 +101,12 @@ const ProductsDashboard = () => {
                      <MenuItem sx={{ color: '#929292' }} value={10}>
                         Collection 1
                      </MenuItem>
-                     <MenuItem sx={{color: '#929292'}} value={20}>Collection 2</MenuItem>
-                     <MenuItem sx={{color: '#929292'}} value={30}>Collection 3</MenuItem>
+                     <MenuItem sx={{ color: '#929292' }} value={20}>
+                        Collection 2
+                     </MenuItem>
+                     <MenuItem sx={{ color: '#929292' }} value={30}>
+                        Collection 3
+                     </MenuItem>
                   </Select>
                </FormControl>
             </FillterInnerWrapper>
@@ -118,9 +122,15 @@ const ProductsDashboard = () => {
                      sx={{ borderRadius: 9999 }}
                   >
                      <MenuItem value=''>All Products</MenuItem>
-                     <MenuItem sx={{color: '#929292'}} value={10}>In stock</MenuItem>
-                     <MenuItem sx={{color: '#929292'}} value={20}>Digital</MenuItem>
-                     <MenuItem sx={{color: '#929292'}} value={30}>Out of stock</MenuItem>
+                     <MenuItem sx={{ color: '#929292' }} value={10}>
+                        In stock
+                     </MenuItem>
+                     <MenuItem sx={{ color: '#929292' }} value={20}>
+                        Digital
+                     </MenuItem>
+                     <MenuItem sx={{ color: '#929292' }} value={30}>
+                        Out of stock
+                     </MenuItem>
                   </Select>
                </FormControl>
             </FillterInnerWrapper>

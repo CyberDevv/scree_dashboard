@@ -246,7 +246,6 @@ const MainDashboard = () => {
 };
 
 // Tailwind Styles
-const MainWrapper = tw.div`w-full`;
 const Section = tw.div`grid grid-cols-[1.5fr 1fr] my-4 gap-x-8`;
 const Main = tw.main`column-span[1.5fr] space-y-8`;
 const Aside = tw.aside`space-y-8`;
