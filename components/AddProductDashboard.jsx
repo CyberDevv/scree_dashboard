@@ -2,17 +2,22 @@ import tw from 'twin.macro';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 
+import 'react-quill/dist/quill.snow.css';
 import { Button } from './TailwindStyles';
 import Collection from './Collection.jsx';
 import PlusOutlinedSVG from '../public/svg/plusoutline.svg';
 import SelectMediaPlaceholderSVG from '../public/svg/selectMediaPlaceholder.svg';
 
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 const AddProductDashboard = () => {
    const [productName, setProductName] = useState('Untitled Product');
-   const [addCollection, setAddCollection] = useState(false);
+   const [productDescription, setProductDescription] =
+      useState('');
    const [Collections, setCollections] = useState([
       {
          id: 0,
@@ -25,6 +30,39 @@ const AddProductDashboard = () => {
          task: 'All Products',
       },
    ]);
+
+   const handleOnchange = (value) => {
+      console.log(value);
+   };
+
+   const modules = {
+      toolbar: [
+         [{ header: [1, 2, 3, 4, 5, 6, false] }],
+         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+         [
+            { list: 'ordered' },
+            { list: 'bullet' },
+            { indent: '-1' },
+            { indent: '+1' },
+         ],
+         ['link', 'image'],
+         ['clean'],
+      ],
+   };
+   const formats = [
+      'header',
+      'bold',
+      'italic',
+      'underline',
+      'strike',
+      'blockquote',
+      'list',
+      'bullet',
+      'indent',
+      'link',
+      'image',
+   ];
+
    return (
       <>
          {/* Breadcrumb */}
@@ -87,6 +125,36 @@ const AddProductDashboard = () => {
                         />
                      </ImageWrapper>
                   </Div>
+               </Wrapper>
+
+               {/* Editor */}
+               <div>
+                  <Wrapper>
+                     <p className='smallBold'>Product Description</p>
+                  </Wrapper>
+                  <ReactQuill
+                     value={productDescription}
+                     onChange={(value) => setProductDescription(value)}
+                     modules={modules}
+                     formats={formats}
+                     placeholder='Enter your product description here'
+                  ></ReactQuill>
+               </div>
+
+               {/* Pricing */}
+               <Wrapper>
+                  <p className='smallBold'>Pricing</p>
+
+                  <PriceFieldWrapper>
+                     <Label htmlFor='addProduct'>
+                        Price
+                        <TextField
+                           type='text'
+                           id='addProduct'
+                           placeholder='₦20,000'
+                        />
+                     </Label>
+                  </PriceFieldWrapper>
                </Wrapper>
             </Main>
 
@@ -164,7 +232,7 @@ const NavButton1 = tw(NavButton)`border-2`;
 const NavButton2 = tw(
    NavButton
 )`bg-primary-darkest text-white flex items-center justify-center space-x-4`;
-const Section = tw.div`grid grid-cols-[1.5fr 1fr] my-4 gap-x-8`;
+const Section = tw.div`grid grid-cols-[1.5fr 1fr] my-4 gap-x-8 pb-20`;
 const Main = tw.main`column-span[1.5fr] space-y-8`;
 const Aside = tw.aside`space-y-8`;
 const Wrapper = tw.div`bg-white rounded-2xl px-5 py-7`;
@@ -174,10 +242,11 @@ const Input = tw.input`hidden`;
 const ImageWrapper = tw.div`relative w-full max-w-[250px] h-[120px] rounded-2xl overflow-hidden`;
 const Form = tw.form`mt-8 space-y-7`;
 const Label = tw.label``;
-const TextField = tw.input`block mt-5 border-2 border-textBg-lightest rounded-xl w-full px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-textBg-lightest`;
+const TextField = tw.input`block mt-5 border-2 border-textBg-lightest rounded-xl w-full max-w-[350px] px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-textBg-lightest`;
 const Collectionss = tw.div`mt-7`;
 const InputAddCollection = tw.input`border-2 border-textBg-lightest rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-textBg-light text-textBg-light`;
 const EachCollectionWrapper = tw.div`flex space-x-4 mb-4 items-center`;
 const CreateCollectionText = tw.p`text-secondary-darkest`;
+const PriceFieldWrapper = tw.div`mt-7`
 
 export default AddProductDashboard;

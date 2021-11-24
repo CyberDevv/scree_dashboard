@@ -160,6 +160,22 @@ h6 {
    object-position: center center;
 }
 
+.ql-toolbar.ql-snow {
+   background-color: var(--bg-color);
+   border: 0 !important;
+   padding: 20px 20px 20px 10px !important;
+}
+
+.ql-container.ql-snow {
+   background-color: white;
+   border: 0 !important;
+   padding: 20px !important;
+}
+
+.ql-editor {
+   padding: 0 !important;
+}
+
 /* #__next {
    max-width: 1440px;
    margin: 0 auto;
