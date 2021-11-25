@@ -1,7 +1,7 @@
 import DashBoardPageSetup from '../DashBoardPageSetup.jsx';
 import ProductsDashboard from '../ProductsDashboard.jsx';
 
-const Dashboard = () => {
+const Products = () => {
    return (
       <DashBoardPageSetup>
          <ProductsDashboard />
@@ -9,4 +9,4 @@ const Dashboard = () => {
    );
 };
 
-export default Dashboard;
+export default Products;

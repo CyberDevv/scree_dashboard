@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import Products from '../../components/page_components/Products.jsx';
 
-export default function Home() {
+export default function ProductsPage() {
    return (
       <>
          <Head>
