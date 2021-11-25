@@ -34,6 +34,6 @@ ActiveLink.propTypes = {
 };
 
 // Tailwind Styles
-const NavItem = tw.div`pl-6 py-[1.1rem] relative`;
+const NavItem = tw.div`pl-6 py-[1.1rem] relative cursor-pointer`;
 
 export default ActiveLink;

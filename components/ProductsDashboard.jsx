@@ -145,7 +145,7 @@ const ProductsDashboard = () => {
 // Tailwind Styles
 const NavWrapper = tw.nav`w-full mt-6 flex justify-between items-center`;
 const NavText = tw.h5`inline`;
-const NavSpan = tw(NavText)`text-textBg-light`;
+const NavSpan = tw.span`text-textBg-light`;
 const NavButtonWrapper = tw.div`space-x-8 flex items-center`;
 const NavButton = tw(
    Button

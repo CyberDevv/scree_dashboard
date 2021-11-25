@@ -6,7 +6,6 @@ import HamburgerSVG from '../public/svg/hamburger.svg';
 import ChedckedSVG from '../public/svg/plainChecked.svg';
 
 const Products = ({ products }) => {
-   console.log(products);
    return (
       <>
          <Nav>
@@ -34,7 +33,7 @@ const Products = ({ products }) => {
          <div>
             {products.map(({ id, name, price, type, image }) => {
                return (
-                  <Product>
+                  <Product key={id}>
                      <IconButton>
                         <ChedckedSVG />
                      </IconButton>
