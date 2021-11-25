@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Collections from '../components/page_components/Collections.jsx';
+import Collections from '../../components/page_components/Collections.jsx';
 
 export default function CollectionsPage() {
    return (
