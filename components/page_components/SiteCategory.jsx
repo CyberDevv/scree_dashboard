@@ -5,20 +5,18 @@ import { Button } from '../TailwindStyles';
 import WelcomeIcon from '../../public/svg/welcome.svg';
 import TwoSectionsLayout from '../../components/TwoSectionsLayout.jsx';
 
-const Welcome = () => {
+const SiteCategory = () => {
    return (
       <TwoSectionsLayout>
-         <WelcomeIcon />
+         <Title>What is your site about</Title>
 
-         <Title>Welcome to Scree</Title>
          <Description>
-            Start creating your very own customizable website
+            This is on pending ( because I don't think there is a need of this
+            screen since the site is just to generate a single site)
          </Description>
 
-         {/* <StartButton>Start Creating</StartButton> */}
          <ButtonWrapper>
-            {/* <ButtonText className='smallBold'>Continue</ButtonText> */}
-            <Link href='/site-category'>
+            <Link href='/'>
                <TempAnchor className='smallBold'>Start Creating</TempAnchor>
             </Link>
          </ButtonWrapper>
@@ -27,13 +25,11 @@ const Welcome = () => {
 };
 
 // Tailwindcss Styles
-const Title = tw.h3`my-8`;
+const Title = tw.h3`text-primary-dark`;
 const Description = tw.h6`text-textBg-dark`;
-const StartButton = tw(Button)`mt-8`;
 const ButtonWrapper = tw(
    Button
 )`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center duration-300 transition-all mt-20`;
-// const ButtonText = tw.p`text-white text-center w-full py-2.5`;
 const TempAnchor = tw.a`text-white text-center w-full py-2.5`;
 
-export default Welcome;
+export default SiteCategory;

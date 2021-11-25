@@ -13,6 +13,7 @@ import Products from './Products.jsx';
 import UnCheckedSVG from '../public/svg/unchecked.svg';
 import ProgressProvider from '../utils/ProgressProvider.js';
 import ExternalLinkSVG from '../public/svg/toexternallink.svg';
+import { FormControl, MenuItem, Select } from '@mui/material';
 
 const MainDashboard = () => {
    const [addTask, setAddTask] = useState(false);
@@ -57,6 +58,12 @@ const MainDashboard = () => {
          price: 50000,
       },
    ]);
+
+   const [period, setPeriod] = React.useState('');
+
+   const handleCollectionChange = (event) => {
+      setPeriod(event.target.value);
+   };
 
    // function to toggle the input for adding tasks
    const handleAddTask = () => {
@@ -129,14 +136,28 @@ const MainDashboard = () => {
                <Wrapper>
                   <SectionNav>
                      <AnalyticsText>Analytics</AnalyticsText>
-                     <SelectWrapper>
-                        <Select>
-                           <Option value='Days'>Days</Option>
-                           <Option value='Weeks'>Weeks</Option>
-                           <Option value='Months'>Months</Option>
-                           <Option value='Years'>Years</Option>
+                     <FormControl sx={{ minWidth: 120 }}>
+                        <Select
+                           value={period}
+                           onChange={handleCollectionChange}
+                           displayEmpty
+                           // inputProps={{ 'aria-label': 'Without label' }}
+                           sx={{ borderRadius: 3 }}
+                        >
+                           <MenuItem sx={{ color: '#929292' }} value=''>
+                              Days
+                           </MenuItem>
+                           {/* <MenuItem sx={{ color: '#929292' }} value={10}>
+                              Days
+                           </MenuItem> */}
+                           <MenuItem sx={{ color: '#929292' }} value={20}>
+                              Weeks
+                           </MenuItem>
+                           <MenuItem sx={{ color: '#929292' }} value={30}>
+                              Months
+                           </MenuItem>
                         </Select>
-                     </SelectWrapper>
+                     </FormControl>
                   </SectionNav>
                   <Graph />
                </Wrapper>
@@ -274,8 +295,6 @@ const EachTaskWrapper = tw.div`flex space-x-4 mb-4 items-center`;
 const Wrapper = tw.div`bg-white rounded-2xl px-5 py-4`;
 const SectionNav = tw.div`flex items-center justify-between`;
 const SelectWrapper = tw.div`relative`;
-const Select = tw.select`border-2 rounded-md border-textBg-dark bg-white px-2 py-2 text-textBg-dark focus:outline-none focus:ring-2 focus:ring-textBg-dark`;
-const Option = tw.option`text-textBg-dark`;
 const AnalyticsText = tw.p`font-normal text-xl`;
 const ProductWrapper = tw(Wrapper)`px-0`;
 const ProductNav = tw(SectionNav)`px-4`;
