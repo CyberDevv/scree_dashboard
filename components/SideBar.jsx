@@ -57,7 +57,7 @@ const Dashboard = () => {
                </ActiveLink>
 
                {/* Wallet */}
-               <ActiveLink activeClassName='activek' href='/'>
+               <ActiveLink activeClassName='activek' href=''>
                   <Tooltip arrow title='Wallet' placement='right'>
                      <a className='svg'>
                         <svg
@@ -101,7 +101,7 @@ const Dashboard = () => {
                </ActiveLink>
 
                {/* Notification */}
-               <ActiveLink activeClassName='activek' href='/'>
+               <ActiveLink activeClassName='activek' href=''>
                   <Tooltip arrow title='Notification' placement='right'>
                      <a className='svg'>
                         <svg
@@ -123,7 +123,7 @@ const Dashboard = () => {
                </ActiveLink>
 
                {/* Profile */}
-               <ActiveLink activeClassName='activek' href='/'>
+               <ActiveLink activeClassName='activek' href=''>
                   <Tooltip arrow title='Profile' placement='right'>
                      <a className='svg'>
                         <svg
@@ -146,7 +146,7 @@ const Dashboard = () => {
                </ActiveLink>
 
                {/* settings */}
-               <ActiveLink activeClassName='activek' href='/'>
+               <ActiveLink activeClassName='active' href='/settings'>
                   <Tooltip arrow title='Settings' placement='right'>
                      <a className='svg'>
                         <svg

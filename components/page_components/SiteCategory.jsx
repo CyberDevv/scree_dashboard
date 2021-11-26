@@ -16,7 +16,7 @@ const SiteCategory = () => {
          </Description>
 
          <ButtonWrapper>
-            <Link href='/'>
+            <Link href='/ufuuf'>
                <TempAnchor className='smallBold'>Start Creating</TempAnchor>
             </Link>
          </ButtonWrapper>

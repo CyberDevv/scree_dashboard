@@ -176,7 +176,14 @@ h6 {
    padding: 0 !important;
 }
 
-/* #__next {
-   max-width: 1440px;
-   margin: 0 auto;
-} */
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+   border-radius: 10px;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   -ms-border-radius: 10px;
+   -o-border-radius: 10px;
+}
+
+.activeSettings {
+   border: 2px solid #25307E;
+}
