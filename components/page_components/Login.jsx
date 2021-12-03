@@ -1,12 +1,19 @@
 import tw from 'twin.macro';
 import Link from 'next/link';
 import { useState } from 'react';
+import {
+   TextField,
+   FormControl,
+   InputLabel,
+   OutlinedInput,
+   IconButton,
+   InputAdornment,
+} from '@mui/material';
 
+import { Button } from '../TailwindStyles';
 import Show from '../../public/svg/show.svg';
 import Hide from '../../public/svg/hide.svg';
 import TwoSectionsLayout from '../TwoSectionsLayout';
-import InputField from '../../components/InputField.jsx';
-import { Button } from '../../components/TailwindStyles.jsx';
 
 const Login = () => {
    const [usernameEmail, setUsernameEmail] = useState('');
@@ -19,30 +26,39 @@ const Login = () => {
 
          <Form>
             {/* Username */}
-            <InputField
-               placeholder='Email Address/Username'
+            <TextField
+               label='Email Address/Username'
                type='text'
+               variant='outlined'
                value={usernameEmail}
+               fullWidth
                onChange={(e) => setUsernameEmail(e.target.value)}
+               required
             />
 
             {/* password */}
-            <InputField
-               type={passwordShown ? 'text' : 'password'}
-               placeholder='Password'
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-            >
-               {passwordShown ? (
-                  <ShowHide onClick={() => setPasswordShown(!passwordShown)}>
-                     <Show />
-                  </ShowHide>
-               ) : (
-                  <ShowHide onClick={() => setPasswordShown(!passwordShown)}>
-                     <Hide />
-                  </ShowHide>
-               )}
-            </InputField>
+            <FormControl fullWidth variant='outlined'>
+               <InputLabel htmlFor='password'>Password</InputLabel>
+               <OutlinedInput
+                  id='password'
+                  type={passwordShown ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  endAdornment={
+                     <InputAdornment position='end'>
+                        <IconButton
+                           aria-label='toggle password visibility'
+                           onClick={() => setPasswordShown(!passwordShown)}
+                           edge='end'
+                        >
+                           {passwordShown ? <Hide /> : <Show />}
+                        </IconButton>
+                     </InputAdornment>
+                  }
+                  label='Password'
+               />
+            </FormControl>
          </Form>
 
          <ForgotPassword>
@@ -72,10 +88,8 @@ const Title = tw.h3`text-primary-dark`;
 const ButtonWrapper = tw(
    Button
 )`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center mt-10 duration-300 transition-all mt-20`;
-// const ButtonText = tw.p`text-white text-center w-full py-2.5`;
 const TempAnchor = tw.a`text-white text-center w-full py-2.5`;
 const Form = tw.form`mt-20 space-y-12 w-full`;
-const ShowHide = tw.button`px-2 text-left`;
 const ForgotPassword = tw.div`w-full text-left mt-9`;
 const Span = tw.span`text-secondary-darkest`;
 const AlternateText = tw.p`text-textBg-light mt-9 `;

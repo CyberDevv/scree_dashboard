@@ -18,7 +18,7 @@ const Welcome = () => {
          {/* <StartButton>Start Creating</StartButton> */}
          <ButtonWrapper>
             {/* <ButtonText className='smallBold'>Continue</ButtonText> */}
-            <Link href='/'>
+            <Link href='/site-category'>
                <TempAnchor className='smallBold'>Start Creating</TempAnchor>
             </Link>
          </ButtonWrapper>

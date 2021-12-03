@@ -1,10 +1,17 @@
 import tw from 'twin.macro';
 import Link from 'next/link';
 import { useState } from 'react';
+import {
+   TextField,
+   FormControl,
+   InputLabel,
+   OutlinedInput,
+   IconButton,
+   InputAdornment,
+} from '@mui/material';
 
 import Show from '../public/svg/show.svg';
 import Hide from '../public/svg/hide.svg';
-import InputField from '../components/InputField.jsx';
 import { Button } from '../components/TailwindStyles.jsx';
 import BackShowHide from '../public/svg/Arrow - Left Square.svg';
 
@@ -24,38 +31,50 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
 
          <Form>
             {/* Username */}
-            <InputField
+            <TextField
                label='Username'
                type='text'
-               value={username}
+               variant='outlined'
                onChange={(e) => setUsername(e.target.value)}
+               value={username}
+               fullWidth
+               required
             />
 
             {/* Email */}
-            <InputField
+            <TextField
                label='Email Address'
                type='email'
+               variant='outlined'
                value={email}
+               fullWidth
                onChange={(e) => setEmail(e.target.value)}
+               required
             />
 
             {/* password */}
-            <InputField
-               label='Enter Sign in PIN'
-               type={passwordShown ? 'text' : 'password'}
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-            >
-               {passwordShown ? (
-                  <ShowHide onClick={() => setPasswordShown(!passwordShown)}>
-                     <Show />
-                  </ShowHide>
-               ) : (
-                  <ShowHide onClick={() => setPasswordShown(!passwordShown)}>
-                     <Hide />
-                  </ShowHide>
-               )}
-            </InputField>
+            <FormControl fullWidth variant='outlined'>
+               <InputLabel htmlFor='password'>Enter Sign in PIN</InputLabel>
+               <OutlinedInput
+                  id='password'
+                  type={passwordShown ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  endAdornment={
+                     <InputAdornment position='end'>
+                        <IconButton
+                           aria-label='toggle password visibility'
+                           onClick={() => setPasswordShown(!passwordShown)}
+                           edge='end'
+                        >
+                           {passwordShown ? <Hide /> : <Show />}
+                        </IconButton>
+                     </InputAdornment>
+                  }
+                  label='Enter Sign in PIN'
+               />
+            </FormControl>
          </Form>
 
          <AgreementText className='small'>
@@ -86,7 +105,6 @@ const ButtonWrapper = tw(
 )`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center mt-10 duration-300 transition-all`;
 const ButtonText = tw.p`text-white text-center w-full py-2.5`;
 const Form = tw.form`mt-20 space-y-12`;
-const ShowHide = tw.button`px-2`;
 const AgreementText = tw.p`text-textBg-light text-left mt-14`;
 const Span = tw.span`text-secondary-darkest`;
 const AlternateText = tw.p`text-textBg-light mt-9 `;
