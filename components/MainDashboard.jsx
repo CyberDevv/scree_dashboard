@@ -1,4 +1,5 @@
 import tw from 'twin.macro';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
@@ -226,7 +227,11 @@ const MainDashboard = () => {
                      </Overview1InnerWrapper>
 
                      {/* Button view site */}
-                     <ViewSite className='smallBold'>view Site</ViewSite>
+                     <ViewSite className='smallBold'>
+                        <Link href='/site-customizer'>
+                           <a>view Site</a>
+                        </Link>
+                     </ViewSite>
                   </Overview1>
 
                   <Overview2>
