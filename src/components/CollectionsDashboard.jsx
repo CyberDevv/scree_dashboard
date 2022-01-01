@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 import { Button } from './TailwindStyles';
-import PlusSVG from '../public/svg/plus.svg';
+import PlusSVG from '../../public/svg/plus.svg';
 
 const CollectionsDashboard = () => {
    const [collections, setCollections] = useState([
@@ -65,7 +65,7 @@ const CollectionsDashboard = () => {
                return (
                   <div key={id}>
                      <ImageWrapper>
-                        <Image src={image} layout='fill' objectFit='cover ' />
+                        <Image src={image} layout='fill' objectFit='cover' alt= {name} />
                      </ImageWrapper>
                      <CollectionName className='smallBold'>
                         {name}

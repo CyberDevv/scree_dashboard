@@ -1,7 +1,7 @@
 import tw from 'twin.macro'
 
-import Google from '../public/svg/flat-color-icons_google.svg';
-import Facebook from '../public/svg/ei_sc-facebook.svg';
+import Google from '../../public/svg/flat-color-icons_google.svg';
+import Facebook from '../../public/svg/ei_sc-facebook.svg';
 
 const SignupMethods = ({setSignupClicked}) => {
 
@@ -11,7 +11,7 @@ const SignupMethods = ({setSignupClicked}) => {
   
   return (
      <div>
-        <Title>Welcome! Let's get you started</Title>
+        <Title>Welcome! Let&apos;s get you started</Title>
         <Description>Create a scree account to continue</Description>
 
         <SignupWrapper>

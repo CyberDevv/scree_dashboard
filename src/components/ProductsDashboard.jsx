@@ -5,7 +5,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 import Products from './Products.jsx';
 import { Button } from './TailwindStyles';
-import PlusSVG from '../public/svg/plus.svg';
+import PlusSVG from '../../public/svg/plus.svg';
 
 const ProductsDashboard = () => {
    const [products, setProducts] = useState([

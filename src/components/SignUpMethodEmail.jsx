@@ -10,10 +10,10 @@ import {
    InputAdornment,
 } from '@mui/material';
 
-import Show from '../public/svg/show.svg';
-import Hide from '../public/svg/hide.svg';
+import Show from '../../public/svg/show.svg';
+import Hide from '../../public/svg/hide.svg';
 import { Button } from '../components/TailwindStyles.jsx';
-import BackShowHide from '../public/svg/Arrow - Left Square.svg';
+import BackShowHide from '../../public/svg/Arrow - Left Square.svg';
 
 const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [username, setUsername] = useState('');
@@ -88,7 +88,7 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
 
          <AlternateText>
             Already have an account?{' '}
-            <Link href='/login'>
+            <Link href='/login' passHref>
                <Anchor>Login</Anchor>
             </Link>
             `

@@ -67,14 +67,14 @@ const Login = () => {
 
          <ButtonWrapper>
             {/* <ButtonText className='smallBold'>Continue</ButtonText> */}
-            <Link href='/welcome'>
+            <Link href='/welcome' passHref>
                <TempAnchor className='smallBold'>Continue</TempAnchor>
             </Link>
          </ButtonWrapper>
 
          <AlternateText>
-            Don't have an account?{' '}
-            <Link href='/signup'>
+            Don&apos;t have an account?{' '}
+            <Link href='/signup' passHref>
                <Anchor>Sign Up</Anchor>
             </Link>
             `

@@ -1,33 +1,33 @@
 import tw from 'twin.macro';
 
 import IconButton from './IconButton';
-import CheckedSVG from '../public/svg/checked.svg';
-import UnCheckedSVG from '../public/svg/unchecked.svg';
+import CheckedFillSVG from '../../public/svg/checkedfill.svg';
+import CheckedOutlinedSVG from '../../public/svg/checkedoutlie.svg';
 
-const TasksComponent = ({ tasks, setTasks }) => {
+const CollectionComponent = ({ collections, setCollections }) => {
    const handleclick = (id) => () => {
-      const newTasks = [...tasks];
+      const newTasks = [...collections];
 
       const filteredTasks = newTasks.filter((item) => item.id === id)[0];
 
-      filteredTasks.completed = !filteredTasks.completed;
+      filteredTasks.checked = !filteredTasks.checked;
 
-      setTasks(newTasks);
+      setCollections(newTasks);
    };
 
    return (
       <>
-         {tasks.map((Eachtask, index) => {
-            const { completed, task } = Eachtask;
+         {collections.map((Eachtask, index) => {
+            const { checked, task } = Eachtask;
             return (
                <EachTaskWrapper key={index}>
-                  {completed ? (
+                  {checked ? (
                      <IconButton onClick={handleclick(index)}>
-                        <CheckedSVG />
+                        <CheckedFillSVG />
                      </IconButton>
                   ) : (
                      <IconButton onClick={handleclick(index)}>
-                        <UnCheckedSVG />
+                        <CheckedOutlinedSVG />
                      </IconButton>
                   )}
                   <P className='small'>{task}</P>
@@ -42,4 +42,4 @@ const TasksComponent = ({ tasks, setTasks }) => {
 const EachTaskWrapper = tw.div`flex space-x-4 mb-4 items-center`;
 const P = tw.p`text-textBg-darkest`;
 
-export default TasksComponent;
+export default CollectionComponent;

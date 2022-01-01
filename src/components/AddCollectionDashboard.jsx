@@ -14,7 +14,7 @@ const AddCollectionDashboard = () => {
       <>
          {/* Breadcrumb */}
          <BreadcrumbsWrapper separator='>>' aria-label='breadcrumb'>
-            <Link href='/collections'>
+            <Link href='/collections' passHref>
                <BAnchor className='body'>Collections</BAnchor>
             </Link>
             ,

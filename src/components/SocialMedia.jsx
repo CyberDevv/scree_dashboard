@@ -1,9 +1,9 @@
 import tw from 'twin.macro';
 
-import Instagram from '../public/svg/instagram 1.svg';
-import Facebook from '../public/svg/facebook.svg';
-import Whatsapp from '../public/svg/whatsapp 1.svg';
-import Twitter from '../public/svg/twitter 1.svg';
+import Instagram from '../../public/svg/instagram 1.svg';
+import Facebook from '../../public/svg/facebook.svg';
+import Whatsapp from '../../public/svg/whatsapp 1.svg';
+import Twitter from '../../public/svg/twitter 1.svg';
 import { IconButton } from '@mui/material';
 
 const SocialMedia = () => {

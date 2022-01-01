@@ -3,14 +3,14 @@ import Image from 'next/image';
 import { Tooltip } from '@mui/material';
 
 import ActiveLink from './ActiveLink.jsx';
-import Logout from '../public/svg/Iconly.svg';
+import Logout from '../../public/svg/Iconly.svg';
 
 const Dashboard = () => {
    return (
       <MainWrapper>
          <div>
             {/* <Logo /> */}
-            <Image src='/svg/logo.svg' width='86px' height='40' />
+            <Image src='/svg/logo.svg' alt= "Scree" width='86px' height='40' />
 
             <NavMenu>
                <ActiveLink activeClassName='active' href='/'>
@@ -36,7 +36,7 @@ const Dashboard = () => {
 
                {/* products */}
                <ActiveLink activeClassName='active' href='/products'>
-                  <Tooltip title='Products' arrow arrow placement='right'>
+                  <Tooltip title='Products' arrow placement='right'>
                      <a className='svg'>
                         <svg
                            width='28'

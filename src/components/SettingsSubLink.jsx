@@ -6,7 +6,7 @@ import {
    Typography,
 } from '@mui/material';
 
-import Arrow from '../public/svg/arrow.svg';
+import Arrow from '../../public/svg/arrow.svg';
 
 const SettingsSubLink = ({ primary, secondary, onClick }) => {
    return (

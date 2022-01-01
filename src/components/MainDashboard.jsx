@@ -11,9 +11,9 @@ import {
 import Task from './Task.jsx';
 import Graph from './Graph.jsx';
 import Products from './Products.jsx';
-import UnCheckedSVG from '../public/svg/unchecked.svg';
+import UnCheckedSVG from '../../public/svg/unchecked.svg';
 import ProgressProvider from '../utils/ProgressProvider.js';
-import ExternalLinkSVG from '../public/svg/toexternallink.svg';
+import ExternalLinkSVG from '../../public/svg/toexternallink.svg';
 import { FormControl, MenuItem, Select } from '@mui/material';
 
 const MainDashboard = () => {
@@ -113,6 +113,7 @@ const MainDashboard = () => {
                               src='/images/Google Play Badge.png'
                               width='135px'
                               height='40px'
+                              alt="Google Play Badge"
                            />
                         </Anchor>
                         <Anchor>
@@ -120,6 +121,7 @@ const MainDashboard = () => {
                               src='/images/App Store Badge.png'
                               width='135px'
                               height='40px'
+                              alt="App Store Badge"
                            />
                         </Anchor>
                      </Download>
@@ -129,6 +131,7 @@ const MainDashboard = () => {
                         src='/images/devicedownload.png'
                         width='300px'
                         height='300px'
+                        alt="Device Download"
                      />
                   </ImageWrapper>
                </DeviceDownload>

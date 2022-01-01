@@ -74,7 +74,7 @@ const WebsiteSettings = ({
 
             <SubSubTitle>Site Favicon</SubSubTitle>
             <FiviconWrapper>
-               <Image src='/favicon.ico' height='40px' width='40px' />
+               <Image src='/favicon.ico' height='40px' width='40px' alt='Logo'/>
                <div>
                   <P className='small'>
                      Your favicon is currently the scree logo
@@ -105,6 +105,7 @@ const WebsiteSettings = ({
                   height='200px'
                   width='300px'
                   objectFit='cover'
+                  alt='Logo'
                />
                <div>
                   <UploadButton>Upload Image</UploadButton>

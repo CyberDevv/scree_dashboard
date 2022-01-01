@@ -9,8 +9,8 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import 'react-quill/dist/quill.snow.css';
 import { Button } from './TailwindStyles';
 import Collection from './Collection.jsx';
-import PlusOutlinedSVG from '../public/svg/plusoutline.svg';
-import SelectMediaPlaceholderSVG from '../public/svg/selectMediaPlaceholder.svg';
+import PlusOutlinedSVG from '../../public/svg/plusoutline.svg';
+import SelectMediaPlaceholderSVG from '../../public/svg/selectMediaPlaceholder.svg';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -63,7 +63,7 @@ const AddProductDashboard = () => {
       <>
          {/* Breadcrumb */}
          <BreadcrumbsWrapper separator='>>' aria-label='breadcrumb'>
-            <Link href='/products'>
+            <Link href='/products' passHref>
                <BAnchor className='body'>Products</BAnchor>
             </Link>
             ,

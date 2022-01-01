@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 import { useState } from 'react';
 import { IconButton } from '@mui/material';
 
-import Settings from '../public/svg/Settings.svg';
+import Settings from '../../public/svg/Settings.svg';
 import WebsiteSettings from './WebsiteSettings.jsx';
 import GeneralSettings from './GeneralSettings.jsx';
 

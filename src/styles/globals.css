@@ -86,7 +86,7 @@ h6 {
 }
 
 .pattern {
-   background-image: url('../public/svg/bgPattern.svg');
+   background-image: url('../../public/svg/bgPattern.svg');
 }
 
 .active {
@@ -185,5 +185,5 @@ h6 {
 }
 
 .activeSettings {
-   border: 2px solid #25307E;
+   border: 2px solid #25307e;
 }

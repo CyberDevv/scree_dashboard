@@ -1,6 +1,6 @@
 import tw from 'twin.macro';
 
-import Logo from '../public/svg/logo.svg';
+import Logo from '../../public/svg/logo.svg';
 
 const TwoSectionsLayout = ({ children }) => {
    return (

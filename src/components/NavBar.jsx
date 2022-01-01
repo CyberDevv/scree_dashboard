@@ -2,9 +2,9 @@ import tw from 'twin.macro';
 import Image from 'next/image';
 
 import IconButton from './IconButton.jsx';
-import Search from '../public/svg/search.svg';
-import Dropdown from '../public/svg/dropdown.svg';
-import Notification from '../public/svg/NavNotification.svg';
+import Search from '../../public/svg/search.svg';
+import Dropdown from '../../public/svg/dropdown.svg';
+import Notification from '../../public/svg/NavNotification.svg';
 
 const NavBar = () => {
    return (
@@ -23,7 +23,7 @@ const NavBar = () => {
 
             <UserWrapper>
                <UserImage>
-                  <Image src='/images/user.png' layout='fill' />
+                  <Image src='/images/user.png' layout='fill' alt='User' />
                </UserImage>
                <UserName>
                   <Span className='body'>Remi Bankole</Span>

@@ -2,8 +2,8 @@ import tw from 'twin.macro';
 import Image from 'next/image';
 
 import IconButton from './IconButton';
-import HamburgerSVG from '../public/svg/hamburger.svg';
-import ChedckedSVG from '../public/svg/plainChecked.svg';
+import HamburgerSVG from '../../public/svg/hamburger.svg';
+import ChedckedSVG from '../../public/svg/plainChecked.svg';
 
 const Products = ({ products }) => {
    return (
@@ -47,6 +47,7 @@ const Products = ({ products }) => {
                                  src={image}
                                  layout='fill'
                                  className='productImage'
+                                 alt={name}
                               />
                            </ImageWrapper>
                         </SubLi>
