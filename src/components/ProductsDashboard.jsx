@@ -6,52 +6,12 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Products from './Products.jsx';
 import { Button } from './TailwindStyles';
 import PlusSVG from '../../public/svg/plus.svg';
+import { useSelector } from 'react-redux';
 
 const ProductsDashboard = () => {
-   const [products, setProducts] = useState([
-      {
-         id: 1,
-         image: 'https://images.pexels.com/photos/5081399/pexels-photo-5081399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-         name: 'Ipad Pro 2017 Model',
-         type: 'piant pot',
-         price: 10000,
-      },
-      {
-         id: 2,
-         image: 'https://images.pexels.com/photos/698170/pexels-photo-698170.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-         name: 'Coach Tabby 26 for sale',
-         type: 'piant curtain',
-         price: 4500,
-      },
-      {
-         id: 3,
-         image: 'https://images.pexels.com/photos/4048419/pexels-photo-4048419.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-         name: 'Samsung S34',
-         type: 'piant Shit',
-         price: 50000,
-      },
-      {
-         id: 4,
-         image: 'https://images.pexels.com/photos/5081399/pexels-photo-5081399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-         name: 'Ipad Pro 2017 Model',
-         type: 'piant pot',
-         price: 10000,
-      },
-      {
-         id: 5,
-         image: 'https://images.pexels.com/photos/698170/pexels-photo-698170.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-         name: 'Coach Tabby 26 for sale',
-         type: 'piant curtain',
-         price: 4500,
-      },
-      {
-         id: 6,
-         image: 'https://images.pexels.com/photos/4048419/pexels-photo-4048419.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-         name: 'Samsung S34',
-         type: 'piant Shit',
-         price: 50000,
-      },
-   ]);
+   const products = useSelector((state) => state.products);
+
+   console.log('prodcug',(products));
 
    const [collection, setCollection] = React.useState('');
    const [filter, setFilter] = React.useState('');
