@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 
 import { Button } from '../TailwindStyles';
-import Show from '../../public/svg/show.svg';
-import Hide from '../../public/svg/hide.svg';
+import Show from '../../../public/svg/show.svg';
+import Hide from '../../../public/svg/hide.svg';
 import TwoSectionsLayout from '../TwoSectionsLayout';
 
 const Login = () => {
@@ -22,63 +22,65 @@ const Login = () => {
 
    return (
       <TwoSectionsLayout>
-         <Title>Log in with email</Title>
+         <div css={[tw`max-w-sm`]}>
+            <Title>Log in with email</Title>
 
-         <Form>
-            {/* Username */}
-            <TextField
-               label='Email Address/Username'
-               type='text'
-               variant='outlined'
-               value={usernameEmail}
-               fullWidth
-               onChange={(e) => setUsernameEmail(e.target.value)}
-               required
-            />
-
-            {/* password */}
-            <FormControl fullWidth variant='outlined'>
-               <InputLabel htmlFor='password'>Password</InputLabel>
-               <OutlinedInput
-                  id='password'
-                  type={passwordShown ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+            <Form>
+               {/* Username */}
+               <TextField
+                  label='Email Address/Username'
+                  type='text'
+                  variant='outlined'
+                  value={usernameEmail}
+                  fullWidth
+                  onChange={(e) => setUsernameEmail(e.target.value)}
                   required
-                  endAdornment={
-                     <InputAdornment position='end'>
-                        <IconButton
-                           aria-label='toggle password visibility'
-                           onClick={() => setPasswordShown(!passwordShown)}
-                           edge='end'
-                        >
-                           {passwordShown ? <Hide /> : <Show />}
-                        </IconButton>
-                     </InputAdornment>
-                  }
-                  label='Password'
                />
-            </FormControl>
-         </Form>
 
-         <ForgotPassword>
-            <Span>Forgot Password?</Span>
-         </ForgotPassword>
+               {/* password */}
+               <FormControl fullWidth variant='outlined'>
+                  <InputLabel htmlFor='password'>Password</InputLabel>
+                  <OutlinedInput
+                     id='password'
+                     type={passwordShown ? 'text' : 'password'}
+                     value={password}
+                     onChange={(e) => setPassword(e.target.value)}
+                     required
+                     endAdornment={
+                        <InputAdornment position='end'>
+                           <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={() => setPasswordShown(!passwordShown)}
+                              edge='end'
+                           >
+                              {passwordShown ? <Hide /> : <Show />}
+                           </IconButton>
+                        </InputAdornment>
+                     }
+                     label='Password'
+                  />
+               </FormControl>
+            </Form>
 
-         <ButtonWrapper>
-            {/* <ButtonText className='smallBold'>Continue</ButtonText> */}
-            <Link href='/welcome' passHref>
-               <TempAnchor className='smallBold'>Continue</TempAnchor>
-            </Link>
-         </ButtonWrapper>
+            <ForgotPassword>
+               <Span>Forgot Password?</Span>
+            </ForgotPassword>
 
-         <AlternateText>
-            Don&apos;t have an account?{' '}
-            <Link href='/signup' passHref>
-               <Anchor>Sign Up</Anchor>
-            </Link>
-            `
-         </AlternateText>
+            <ButtonWrapper>
+               {/* <ButtonText className='smallBold'>Continue</ButtonText> */}
+               <Link href='/welcome' passHref>
+                  <TempAnchor className='smallBold'>Continue</TempAnchor>
+               </Link>
+            </ButtonWrapper>
+
+            <AlternateText>
+               Don&apos;t have an account?{' '}
+               <Link href='/signup' passHref>
+                  <Anchor>Sign Up</Anchor>
+               </Link>
+               `
+            </AlternateText>
+         </div>
       </TwoSectionsLayout>
    );
 };

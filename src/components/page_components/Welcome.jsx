@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 import Link from 'next/link';
 
 import { Button } from '../TailwindStyles';
-import WelcomeIcon from '../../public/svg/welcome.svg';
+import WelcomeIcon from '../../../public/svg/welcome.svg';
 import TwoSectionsLayout from '../../components/TwoSectionsLayout.jsx';
 
 const Welcome = () => {

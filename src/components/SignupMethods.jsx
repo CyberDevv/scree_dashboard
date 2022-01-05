@@ -1,11 +1,18 @@
 import tw from 'twin.macro';
 import { authentication } from '../firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useDispatch } from 'react-redux';
 
 import Google from '../../public/svg/flat-color-icons_google.svg';
 import Facebook from '../../public/svg/ei_sc-facebook.svg';
+import { login } from '../features/userSllice';
 
 const SignupMethods = ({ setSignupClicked }) => {
+   const dispatch = useDispatch();
+
+   const [user, loading, error] = useAuthState(authentication);
+
    const handleSignupEmail = () => {
       setSignupClicked(true);
    };
@@ -19,10 +26,16 @@ const SignupMethods = ({ setSignupClicked }) => {
          .catch((err) => {
             console.log(err);
          });
+
+      localStorage.setItem('user', JSON.stringify(user));
+
+      console.log('loading:', loading, '|', 'current user:', user);
+
+      dispatch(login(user));
    };
 
    return (
-      <div>
+      <div css={[tw`max-w-sm`]}>
          <Title>Welcome! Let&apos;s get you started</Title>
          <Description>Create a scree account to continue</Description>
 

@@ -4,13 +4,30 @@ import { Tooltip } from '@mui/material';
 
 import ActiveLink from './ActiveLink.jsx';
 import Logout from '../../public/svg/Iconly.svg';
+import { authentication } from '../firebase/index.js';
+import { signOut } from 'firebase/auth';
+import { logout } from '../features/userSllice.js';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const Dashboard = () => {
+   const dispatch = useDispatch();
+
+   const { push } = useRouter();
+
+   const handleLogout = () => {
+      signOut(authentication);
+      dispatch(logout());
+      localStorage.removeItem('user');
+      // localStorage.removeItem('token');
+      push('/login');
+   };
+
    return (
       <MainWrapper>
          <div>
             {/* <Logo /> */}
-            <Image src='/svg/logo.svg' alt= "Scree" width='86px' height='40' />
+            <Image src='/svg/logo.svg' alt='Scree' width='86px' height='40' />
 
             <NavMenu>
                <ActiveLink activeClassName='active' href='/'>
@@ -171,7 +188,7 @@ const Dashboard = () => {
 
          {/* Logout */}
          <Tooltip arrow placement='right' title='Logout'>
-            <LogoutWrapper>
+            <LogoutWrapper onClick={handleLogout}>
                <Logout />
             </LogoutWrapper>
          </Tooltip>
@@ -182,6 +199,6 @@ const Dashboard = () => {
 // Tailwind Styles
 const MainWrapper = tw.div`fixed bg-primary-darkest h-[calc(100vh - 52px)] text-white flex flex-col justify-between rounded-[32px] pl-5 py-14 min-w-[120px] w-[120px] overflow-x-hidden`;
 const NavMenu = tw.ul`mt-8`;
-const LogoutWrapper = tw.div`pl-6 py-[1.1rem] relative`;
+const LogoutWrapper = tw.button`pl-6 py-[1.1rem] relative`;
 
 export default Dashboard;

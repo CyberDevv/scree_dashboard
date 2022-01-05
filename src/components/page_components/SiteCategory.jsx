@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 import { Button } from '../TailwindStyles';
-import SearchSVG from '../../public/svg/search.svg';
+import SearchSVG from '../../../public/svg/search.svg';
 import TwoSectionsLayout from '../../components/TwoSectionsLayout.jsx';
 
 const SiteCategory = () => {

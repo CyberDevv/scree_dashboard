@@ -1,8 +1,21 @@
 import Head from 'next/head';
 
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import SiteCustomizer from '../components/page_components/SiteCustomizer.jsx';
 
-const siteCustomizer = () => {
+const SiteCustomizerPage = () => {
+   const { push } = useRouter();
+
+   useEffect(() => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+         if (!user) {
+            push('/login');
+         }
+      });
+   }, [push]);
    return (
       <>
          <Head>
@@ -14,4 +27,4 @@ const siteCustomizer = () => {
    );
 };
 
-export default siteCustomizer;
+export default SiteCustomizerPage;

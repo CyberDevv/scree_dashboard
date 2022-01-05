@@ -8,12 +8,12 @@ import {
    OutlinedInput,
    IconButton,
    InputAdornment,
+   Button as MUIButton,
 } from '@mui/material';
 
 import Show from '../../public/svg/show.svg';
 import Hide from '../../public/svg/hide.svg';
 import { Button } from '../components/TailwindStyles.jsx';
-import BackShowHide from '../../public/svg/Arrow - Left Square.svg';
 
 const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [username, setUsername] = useState('');
@@ -22,11 +22,7 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [passwordShown, setPasswordShown] = useState(false);
 
    return (
-      <div>
-         <Back className='tiny' onClick={() => setSignupClicked(false)}>
-            <BackShowHide />
-         </Back>
-
+      <div css={[tw`max-w-sm`]}>
          <Title>Sign up with email </Title>
 
          <Form>
@@ -93,18 +89,25 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
             </Link>
             `
          </AlternateText>
+
+         <MUIButton
+            className='tiny'
+            sx={{ marginTop: 3, textDecoration: 'underline' }}
+            onClick={() => setSignupClicked(false)}
+         >
+            Back
+         </MUIButton>
       </div>
    );
 };
 
 // Tailwind Styles
-const Back = tw.button`text-left mb-4 text-textBg-dark hover:text-secondary-darkest`;
 const Title = tw.h3`text-primary-dark`;
 const ButtonWrapper = tw(
    Button
 )`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center mt-10 duration-300 transition-all`;
 const ButtonText = tw.p`text-white text-center w-full py-2.5`;
-const Form = tw.form`mt-20 space-y-12`;
+const Form = tw.form`mt-16 space-y-12`;
 const AgreementText = tw.p`text-textBg-light text-left mt-14`;
 const Span = tw.span`text-secondary-darkest`;
 const AlternateText = tw.p`text-textBg-light mt-9 `;

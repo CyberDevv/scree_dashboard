@@ -1,15 +1,30 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import Welcome from '../components/page_components/Welcome.jsx' 
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Welcome from '../components/page_components/Welcome.jsx';
 
 const WelcomePage = () => {
-   return <>
-      <Head>
-         <title>Welcome | Scree Dashboard</title>
-   </Head>
+   const { push } = useRouter();
 
-      <Welcome />
-   </>;
+   useEffect(() => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+         if (!user) {
+            push('/login');
+         }
+      });
+   }, [push]);
+   return (
+      <>
+         <Head>
+            <title>Welcome | Scree Dashboard</title>
+         </Head>
+
+         <Welcome />
+      </>
+   );
 };
 
 export default WelcomePage;
