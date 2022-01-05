@@ -9,6 +9,7 @@ import {
    IconButton,
    InputAdornment,
 } from '@mui/material';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { Button } from '../TailwindStyles';
 import Show from '../../../public/svg/show.svg';
@@ -19,6 +20,20 @@ const Login = () => {
    const [usernameEmail, setUsernameEmail] = useState('');
    const [password, setPassword] = useState('');
    const [passwordShown, setPasswordShown] = useState(false);
+
+   const handleLogIn = () => {
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, usernameEmail, password).catch((err) => {
+         if (err.code === 'auth/user-not-found') {
+            console.log('Email not found');
+         } else if (err.code === 'auth/wrong-password') {
+            console.log('Wrong password');
+         } else {
+            console.log(err.message);
+         }
+         console.log(err);
+      });
+   };
 
    return (
       <TwoSectionsLayout>
@@ -66,7 +81,7 @@ const Login = () => {
                <Span>Forgot Password?</Span>
             </ForgotPassword>
 
-            <ButtonWrapper>
+            <ButtonWrapper onClick={handleLogIn}>
                {/* <ButtonText className='smallBold'>Continue</ButtonText> */}
                <Link href='/welcome' passHref>
                   <TempAnchor className='smallBold'>Continue</TempAnchor>

@@ -1,7 +1,6 @@
 import tw from 'twin.macro';
 import Link from 'next/link';
-import { useState } from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, Select, MenuItem } from '@mui/material';
 
 import Products from './Products.jsx';
 import { Button } from './TailwindStyles';
@@ -10,8 +9,6 @@ import { useSelector } from 'react-redux';
 
 const ProductsDashboard = () => {
    const products = useSelector((state) => state.products);
-
-   console.log('prodcug',(products));
 
    const [collection, setCollection] = React.useState('');
    const [filter, setFilter] = React.useState('');

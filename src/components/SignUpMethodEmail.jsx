@@ -10,7 +10,13 @@ import {
    InputAdornment,
    Button as MUIButton,
 } from '@mui/material';
+import {
+   createUserWithEmailAndPassword,
+   getAuth,
+   onAuthStateChanged,
+} from 'firebase/auth';
 
+import { authentication } from '../firebase';
 import Show from '../../public/svg/show.svg';
 import Hide from '../../public/svg/hide.svg';
 import { Button } from '../components/TailwindStyles.jsx';
@@ -20,6 +26,38 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [passwordShown, setPasswordShown] = useState(false);
+
+   const handleSignIn = () => {
+      createUserWithEmailAndPassword(authentication, email, password).catch(
+         (err) => {
+            if (err.code === 'auth/email-already-in-use') {
+               console.log('Email already in use');
+            } else {
+               console.log(err.message);
+            }
+            console.log(err);
+         }
+      );
+
+      const auth = getAuth();
+
+      onAuthStateChanged(auth, (user) => {
+         if (user) {
+            user.displayName = username;
+            // .then(console.log('Progile updated'));
+
+            localStorage.setItem(
+               'user',
+               JSON.stringify({
+                  displayName: user.displayName,
+                  email: user.email,
+                  // photoURL: user.photoURL,
+                  uid: user.uid,
+               })
+            );
+         }
+      });
+   };
 
    return (
       <div css={[tw`max-w-sm`]}>
@@ -78,9 +116,9 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
             <Span>Conditions</Span> and <Span>Privacy Policy</Span>
          </AgreementText>
 
-         <ButtonWrapper>
-            <ButtonText className='smallBold'>Continue</ButtonText>
-         </ButtonWrapper>
+         <SignUpButton className='smallBold' onClick={handleSignIn}>
+            Continue
+         </SignUpButton>
 
          <AlternateText>
             Already have an account?{' '}
@@ -103,10 +141,9 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
 
 // Tailwind Styles
 const Title = tw.h3`text-primary-dark`;
-const ButtonWrapper = tw(
+const SignUpButton = tw(
    Button
-)`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center mt-10 duration-300 transition-all`;
-const ButtonText = tw.p`text-white text-center w-full py-2.5`;
+)`cursor-pointer text-white w-full rounded-full bg-primary-darkest py-5 px-10 mt-10 duration-300 transition-all`;
 const Form = tw.form`mt-16 space-y-12`;
 const AgreementText = tw.p`text-textBg-light text-left mt-14`;
 const Span = tw.span`text-secondary-darkest`;

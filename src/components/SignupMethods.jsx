@@ -1,18 +1,15 @@
 import tw from 'twin.macro';
 import { authentication } from '../firebase';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useDispatch } from 'react-redux';
+import {
+   signInWithPopup,
+   GoogleAuthProvider,
+   FacebookAuthProvider,
+} from 'firebase/auth';
 
-import Google from '../../public/svg/flat-color-icons_google.svg';
 import Facebook from '../../public/svg/ei_sc-facebook.svg';
-import { login } from '../features/userSllice';
+import Google from '../../public/svg/flat-color-icons_google.svg';
 
 const SignupMethods = ({ setSignupClicked }) => {
-   const dispatch = useDispatch();
-
-   const [user, loading, error] = useAuthState(authentication);
-
    const handleSignupEmail = () => {
       setSignupClicked(true);
    };
@@ -21,17 +18,41 @@ const SignupMethods = ({ setSignupClicked }) => {
       const provider = new GoogleAuthProvider();
       signInWithPopup(authentication, provider)
          .then((response) => {
-            console.log(response);
+            localStorage.setItem(
+               'user',
+               JSON.stringify({
+                  displayName: response.user.displayName,
+                  email: response.user.email,
+                  photoURL: response.user.photoURL,
+                  uid: response.user.uid,
+               })
+            );
          })
          .catch((err) => {
+            // TODO: display error message in a toast
             console.log(err);
          });
+   };
 
-      localStorage.setItem('user', JSON.stringify(user));
-
-      console.log('loading:', loading, '|', 'current user:', user);
-
-      dispatch(login(user));
+   const handleFacebookSignIn = () => {
+      // FIXME: this is not working
+      const provider = new FacebookAuthProvider();
+      signInWithPopup(authentication, provider)
+         .then((response) => {
+            localStorage.setItem(
+               'user',
+               JSON.stringify({
+                  displayName: response.user.displayName,
+                  email: response.user.email,
+                  photoURL: response.user.photoURL,
+                  uid: response.user.uid,
+               })
+            );
+         })
+         .catch((err) => {
+            // TODO: display error message in a toast
+            console.log(err);
+         });
    };
 
    return (
@@ -47,7 +68,7 @@ const SignupMethods = ({ setSignupClicked }) => {
                </SignupText>
             </GoogleWrapper>
 
-            <FacebookWrapper>
+            <FacebookWrapper onClick={handleFacebookSignIn}>
                <Facebook />
                <SignupTextFacebook className='smallBold'>
                   Sign in with Facebook

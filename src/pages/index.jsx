@@ -4,10 +4,15 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 import Dashboard from '../components/page_components/Dashboard.jsx';
+import { useDispatch } from 'react-redux';
+import {useAuthState} from 'react-firebase-hooks/auth'
+import { authentication } from '../firebase/index.js';
 
 export default function Home() {
+   const dispatch = useDispatch();
    const { push } = useRouter();
 
+   
    useEffect(() => {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
@@ -16,6 +21,9 @@ export default function Home() {
          }
       });
    }, [push]);
+   
+   const [user, loading, error] = useAuthState(authentication);
+   console.log(user)
 
    return (
       <>
