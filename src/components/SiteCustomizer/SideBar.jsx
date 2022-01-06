@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 import { useState } from 'react';
 import { Button as AddSection } from '@mui/material';
 
-import AddSectionSVG from '../../public/svg/addSection.svg';
+import AddSectionSVG from '../../../public/svg/addSection.svg';
 
 const SideBar = () => {
    const [active, setActive] = useState('Hero');

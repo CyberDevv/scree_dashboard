@@ -2,12 +2,12 @@ import tw from 'twin.macro';
 import { FormControl, IconButton, MenuItem, Select } from '@mui/material';
 
 import { Button } from '../TailwindStyles';
-import UndoSVG from '../../public/svg/undo.svg';
-import RedoSVG from '../../public/svg/redo.svg';
-import Search from '../../public/svg/search.svg';
-import PhoneSVG from '../../public/svg/phone.svg';
-import ToolsSVG from '../../public/svg/tools.svg';
-import DesktopSVG from '../../public/svg/desktop.svg';
+import UndoSVG from '../../../public/svg/undo.svg';
+import RedoSVG from '../../../public/svg/redo.svg';
+import Search from '../../../public/svg/search.svg';
+import PhoneSVG from '../../../public/svg/phone.svg';
+import ToolsSVG from '../../../public/svg/tools.svg';
+import DesktopSVG from '../../../public/svg/desktop.svg';
 
 const NavBar = () => {
    return (
