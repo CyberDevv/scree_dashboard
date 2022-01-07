@@ -1,13 +1,11 @@
 import tw from 'twin.macro';
-import { authentication } from '../firebase';
-import {
-   signInWithPopup,
-   GoogleAuthProvider,
-   FacebookAuthProvider,
-} from 'firebase/auth';
 
 import Facebook from '../../public/svg/ei_sc-facebook.svg';
 import Google from '../../public/svg/flat-color-icons_google.svg';
+import {
+   signInWithGoogle,
+   signInWithFacebook,
+} from '../firebase/auth.firebase';
 
 const SignupMethods = ({ setSignupClicked }) => {
    const handleSignupEmail = () => {
@@ -15,44 +13,11 @@ const SignupMethods = ({ setSignupClicked }) => {
    };
 
    const handleGoogleSignIn = () => {
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(authentication, provider)
-         .then((response) => {
-            localStorage.setItem(
-               'user',
-               JSON.stringify({
-                  displayName: response.user.displayName,
-                  email: response.user.email,
-                  photoURL: response.user.photoURL,
-                  uid: response.user.uid,
-               })
-            );
-         })
-         .catch((err) => {
-            // TODO: display error message in a toast
-            console.log(err);
-         });
+      signInWithGoogle();
    };
 
    const handleFacebookSignIn = () => {
-      // FIXME: this is not working
-      const provider = new FacebookAuthProvider();
-      signInWithPopup(authentication, provider)
-         .then((response) => {
-            localStorage.setItem(
-               'user',
-               JSON.stringify({
-                  displayName: response.user.displayName,
-                  email: response.user.email,
-                  photoURL: response.user.photoURL,
-                  uid: response.user.uid,
-               })
-            );
-         })
-         .catch((err) => {
-            // TODO: display error message in a toast
-            console.log(err);
-         });
+      signInWithFacebook();
    };
 
    return (

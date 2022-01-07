@@ -9,30 +9,22 @@ import {
    IconButton,
    InputAdornment,
 } from '@mui/material';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { Button } from '../TailwindStyles';
 import Show from '../../../public/svg/show.svg';
 import Hide from '../../../public/svg/hide.svg';
 import TwoSectionsLayout from '../TwoSectionsLayout';
+import { login } from '../../firebase/auth.firebase';
 
 const Login = () => {
    const [usernameEmail, setUsernameEmail] = useState('');
    const [password, setPassword] = useState('');
    const [passwordShown, setPasswordShown] = useState(false);
 
+   // const { login } = useAuth();
+
    const handleLogIn = () => {
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, usernameEmail, password).catch((err) => {
-         if (err.code === 'auth/user-not-found') {
-            console.log('Email not found');
-         } else if (err.code === 'auth/wrong-password') {
-            console.log('Wrong password');
-         } else {
-            console.log(err.message);
-         }
-         console.log(err);
-      });
+      login(usernameEmail, password);
    };
 
    return (
@@ -104,7 +96,7 @@ const Login = () => {
 const Title = tw.h3`text-primary-dark`;
 const ButtonWrapper = tw(
    Button
-)`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center mt-10 duration-300 transition-all mt-20`;
+)`cursor-pointer w-full rounded-full bg-primary-darkest py-3 px-10 flex items-center duration-300 transition-all mt-20`;
 const TempAnchor = tw.a`text-white text-center w-full py-2.5`;
 const Form = tw.form`mt-20 space-y-12 w-full`;
 const ForgotPassword = tw.div`w-full text-left mt-9`;

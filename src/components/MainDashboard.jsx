@@ -89,7 +89,7 @@ const MainDashboard = () => {
                               src='/images/Google Play Badge.png'
                               width='135px'
                               height='40px'
-                              alt="Google Play Badge"
+                              alt='Google Play Badge'
                            />
                         </Anchor>
                         <Anchor>
@@ -97,7 +97,7 @@ const MainDashboard = () => {
                               src='/images/App Store Badge.png'
                               width='135px'
                               height='40px'
-                              alt="App Store Badge"
+                              alt='App Store Badge'
                            />
                         </Anchor>
                      </Download>
@@ -107,7 +107,8 @@ const MainDashboard = () => {
                         src='/images/devicedownload.png'
                         width='300px'
                         height='300px'
-                        alt="Device Download"
+                        alt='Device Download'
+                        priority={true}
                      />
                   </ImageWrapper>
                </DeviceDownload>
@@ -151,7 +152,7 @@ const MainDashboard = () => {
                      </AddNew>
                   </ProductNav>
 
-                  <Products /> 
+                  <Products />
                </ProductWrapper>
             </Main>
 

@@ -4,11 +4,10 @@ import { Tooltip } from '@mui/material';
 
 import ActiveLink from './ActiveLink.jsx';
 import Logout from '../../public/svg/Iconly.svg';
-import { authentication } from '../firebase/index.js';
-import { signOut } from 'firebase/auth';
 import { logout } from '../features/userSllice.js';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { signout } from '../firebase/auth.firebase';
 
 const Dashboard = () => {
    const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const Dashboard = () => {
    const { push } = useRouter();
 
    const handleLogout = () => {
-      signOut(authentication);
+      signout();
       dispatch(logout());
       localStorage.removeItem('user');
       // localStorage.removeItem('token');

@@ -45,7 +45,7 @@ const NavBar = () => {
                   />
                </UserImage>
                <UserName>
-                  <Span className='body'>{user.displayName}</Span>
+                  <Span className='body'>{user?.displayName}</Span>
                   <IconButton>
                      <Dropdown />
                   </IconButton>

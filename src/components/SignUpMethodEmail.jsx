@@ -10,15 +10,10 @@ import {
    InputAdornment,
    Button as MUIButton,
 } from '@mui/material';
-import {
-   createUserWithEmailAndPassword,
-   getAuth,
-   onAuthStateChanged,
-} from 'firebase/auth';
 
-import { authentication } from '../firebase';
 import Show from '../../public/svg/show.svg';
 import Hide from '../../public/svg/hide.svg';
+import { register } from '../firebase/auth.firebase';
 import { Button } from '../components/TailwindStyles.jsx';
 
 const SignUpMethodEmail = ({ setSignupClicked }) => {
@@ -28,35 +23,7 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [passwordShown, setPasswordShown] = useState(false);
 
    const handleSignIn = () => {
-      createUserWithEmailAndPassword(authentication, email, password).catch(
-         (err) => {
-            if (err.code === 'auth/email-already-in-use') {
-               console.log('Email already in use');
-            } else {
-               console.log(err.message);
-            }
-            console.log(err);
-         }
-      );
-
-      const auth = getAuth();
-
-      onAuthStateChanged(auth, (user) => {
-         if (user) {
-            user.displayName = username;
-            // .then(console.log('Progile updated'));
-
-            localStorage.setItem(
-               'user',
-               JSON.stringify({
-                  displayName: user.displayName,
-                  email: user.email,
-                  // photoURL: user.photoURL,
-                  uid: user.uid,
-               })
-            );
-         }
-      });
+      register(username, email, password);
    };
 
    return (
