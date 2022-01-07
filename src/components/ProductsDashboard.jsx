@@ -5,11 +5,8 @@ import { FormControl, Select, MenuItem } from '@mui/material';
 import Products from './Products.jsx';
 import { Button } from './TailwindStyles';
 import PlusSVG from '../../public/svg/plus.svg';
-import { useSelector } from 'react-redux';
 
 const ProductsDashboard = () => {
-   const products = useSelector((state) => state.products);
-
    const [collection, setCollection] = React.useState('');
    const [filter, setFilter] = React.useState('');
 
@@ -94,7 +91,7 @@ const ProductsDashboard = () => {
          </FilterWrapper>
 
          {/* Product lists */}
-         <Products products={products} />
+         <Products />
       </>
    );
 };

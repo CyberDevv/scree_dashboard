@@ -1,11 +1,14 @@
 import tw from 'twin.macro';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import Currency from 'react-currency-formatter';
 
 import IconButton from './IconButton';
 import HamburgerSVG from '../../public/svg/hamburger.svg';
 import ChedckedSVG from '../../public/svg/plainChecked.svg';
 
-const Products = ({ products }) => {
+const Products = () => {
+   const products = useSelector((state) => state.products);
    return (
       <>
          <Nav>
@@ -58,7 +61,9 @@ const Products = ({ products }) => {
                            <p className='small'>{type}</p>
                         </SubLi>
                         <SubLi>
-                           <p className='small'>₦{price}</p>
+                           <p className='small'>
+                              <Currency quantity={price} currency='NGN' />
+                           </p>
                         </SubLi>
                         <SubLi>
                            <IconButton>
