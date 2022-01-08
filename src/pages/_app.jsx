@@ -1,9 +1,12 @@
 import { GlobalStyles } from 'twin.macro';
 import { Provider } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import store from '../features/index.store';
 
 import '../styles/globals.css';
+import { ToastContainer } from 'react-toastify';
 
 function MyApp({ Component, pageProps }) {
    return (
@@ -11,6 +14,7 @@ function MyApp({ Component, pageProps }) {
          <Provider store={store}>
             <GlobalStyles />
             <Component {...pageProps} />
+            <ToastContainer theme='colored' />
          </Provider>
       </>
    );

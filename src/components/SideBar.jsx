@@ -15,11 +15,13 @@ const Dashboard = () => {
    const { push } = useRouter();
 
    const handleLogout = () => {
-      signout();
-      dispatch(logout());
-      localStorage.removeItem('user');
-      // localStorage.removeItem('token');
-      push('/login');
+      signout().then((res) => {
+         if (res) {
+            dispatch(logout());
+            localStorage.removeItem('user');
+            push('/login');
+         }
+      });
    };
 
    return (
