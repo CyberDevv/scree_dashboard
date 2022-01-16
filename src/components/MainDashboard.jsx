@@ -22,17 +22,17 @@ const MainDashboard = () => {
       {
          id: 0,
          completed: true,
-         task: 'Create my first website',
+         task: 'Create my bookstore website',
       },
       {
          id: 1,
          completed: false,
-         task: 'Finish building my first website',
+         task: 'Finish the development of the website',
       },
       {
          id: 2,
          completed: false,
-         task: 'Have a date tonight (-_-)',
+         task: 'Deploy the website to the server',
       },
    ]);
 

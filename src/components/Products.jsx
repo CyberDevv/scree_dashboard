@@ -6,9 +6,34 @@ import Currency from 'react-currency-formatter';
 import IconButton from './IconButton';
 import HamburgerSVG from '../../public/svg/hamburger.svg';
 import ChedckedSVG from '../../public/svg/plainChecked.svg';
+import { collection, query } from 'firebase/firestore';
+import { database } from '../firebase/index';
+import { useDispatch } from 'react-redux';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { load } from '../features/productsSlice';
+import { useEffect } from 'react';
+import { CircularProgress } from '@mui/material';
 
 const Products = () => {
-   const products = useSelector((state) => state.products);
+   const dispatch = useDispatch();
+
+   // fetches the products from firestore database
+   const [products, productsLoading, productsError] = useCollection(
+      query(collection(database, 'products'))
+   );
+
+   // dispatches the products from firestore to redux store
+   useEffect(() => {
+      if (!productsLoading && products) {
+         products.docs.map((doc) => {
+            dispatch(load(doc.data()));
+         });
+      }
+   }, [dispatch, products, productsLoading]);
+
+   // selects product list from redux store
+   const fromReduxProducts = useSelector((state) => state.products);
+
    return (
       <>
          <Nav>
@@ -34,7 +59,12 @@ const Products = () => {
          </Nav>
 
          <div>
-            {products.map(({ id, name, price, type, image }) => {
+            {productsLoading && (
+               <div css={[tw`w-full flex justify-center mt-8`]}>
+                  <CircularProgress />
+               </div>
+            )}
+            {fromReduxProducts.map(({ id, name, price, type, image }) => {
                return (
                   <Product key={id}>
                      <IconButton>
