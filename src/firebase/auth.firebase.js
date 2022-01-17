@@ -8,6 +8,10 @@ import {
    signOut,
    confirmPasswordReset,
    FacebookAuthProvider,
+   updateProfile,
+   setPersistence,
+   browserLocalPersistence,
+   browserSessionPersistence,
 } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
@@ -17,16 +21,10 @@ export function login(email, password) {
    signInWithEmailAndPassword(authentication, email, password)
       .then((response) => {
          const { user } = response;
-         localStorage.setItem(
-            'user',
-            JSON.stringify({
-               displayName: user.displayName,
-               email: user.email,
-               uid: user.uid,
-            })
-         );
+
+         localStorage.setItem('user', JSON.stringify(user));
+
          toast.success('Login Successful');
-         console.log(user);
       })
       .catch((err) => {
          if (err.code === 'auth/user-not-found') {
@@ -54,12 +52,7 @@ export function signInWithGoogle() {
       .then((response) => {
          localStorage.setItem(
             'user',
-            JSON.stringify({
-               displayName: response.user.displayName,
-               email: response.user.email,
-               photoURL: response.user.photoURL,
-               uid: response.user.uid,
-            })
+            JSON.stringify(response.user)
          );
          toast.success('Login Successful');
       })
@@ -79,12 +72,7 @@ export function signInWithFacebook() {
       .then((response) => {
          localStorage.setItem(
             'user',
-            JSON.stringify({
-               displayName: response.user.displayName,
-               email: response.user.email,
-               photoURL: response.user.photoURL,
-               uid: response.user.uid,
-            })
+            JSON.stringify(response.user)
          );
          toast.success('Login Successful');
       })
@@ -97,45 +85,38 @@ export function signInWithFacebook() {
       });
 }
 
-export function register(username, email, password) {
-   !username && toast.error('Provide a username');
+export async function register(username, email, password) {
+   try {
+      !username && toast.error('Provide a username');
 
-   createUserWithEmailAndPassword(authentication, email, password)
-      .then(() => {
-         toast.success('Registration Successful');
-      })
-      .catch((err) => {
-         if (err.code === 'auth/email-already-in-use') {
-            toast.error('Email already in use');
-         } else if (err.code === 'auth/invalid-email') {
-            toast.error('Provide a valid email');
-         } else if (err.code === 'auth/missing-email') {
-            toast.error('Provide an email');
-         } else if (err.code === 'auth/weak-password') {
-            toast.error('Password should be at least 6 characters');
-         } else if (err.code === 'auth/internal-error') {
-            toast.error('Missing Password');
-         } else {
-            toast.error(err.message);
-         }
-      });
+      const res = await createUserWithEmailAndPassword(
+         authentication,
+         email,
+         password
+      );
 
-   onAuthStateChanged(authentication, (user) => {
-      if (user) {
-         user.displayName = username;
-         // .then(console.log('Progile updated'));
+      await updateProfile(res.user, { displayName: username });
 
-         localStorage.setItem(
-            'user',
-            JSON.stringify({
-               displayName: user.displayName,
-               email: user.email,
-               // photoURL: user.photoURL,
-               uid: user.uid,
-            })
-         );
+      // Saves the user's profile into local storage
+      localStorage.setItem('user', JSON.stringify(res.user));
+
+      toast.success('Registration Successful');
+      return res.user;
+   } catch (err) {
+      if (err.code === 'auth/email-already-in-use') {
+         toast.error('Email already in use');
+      } else if (err.code === 'auth/invalid-email') {
+         toast.error('Provide a valid email');
+      } else if (err.code === 'auth/missing-email') {
+         toast.error('Provide an email');
+      } else if (err.code === 'auth/weak-password') {
+         toast.error('Password should be at least 6 characters');
+      } else if (err.code === 'auth/internal-error') {
+         toast.error('Missing Password');
+      } else {
+         toast.error(err.message);
       }
-   });
+   }
 }
 
 export async function signout() {
@@ -151,6 +132,7 @@ export async function signout() {
 export async function forgotPassword(email) {
    try {
       await sendPasswordResetEmail(authentication, email, {
+         // TODO: change to live url
          url: `http://localhost:3005/login`,
       });
       toast.success('Password reset email sent');

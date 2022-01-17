@@ -8,6 +8,7 @@ import { logout } from '../features/userSllice.js';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { signout } from '../firebase/auth.firebase';
+import { unload } from '../features/productsSlice';
 
 const Dashboard = () => {
    const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Dashboard = () => {
       signout().then((res) => {
          if (res) {
             dispatch(logout());
+            dispatch(unload());
             localStorage.removeItem('user');
             push('/login');
          }

@@ -9,21 +9,32 @@ import {
    IconButton,
    InputAdornment,
    Button as MUIButton,
+   CircularProgress,
 } from '@mui/material';
 
 import Show from '../../public/svg/show.svg';
 import Hide from '../../public/svg/hide.svg';
 import { register } from '../firebase/auth.firebase';
 import { Button } from '../components/TailwindStyles.jsx';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSllice';
 
 const SignUpMethodEmail = ({ setSignupClicked }) => {
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [passwordShown, setPasswordShown] = useState(false);
+   const [loading, setLoading] = useState(false);
+
+   const dispatch = useDispatch();
 
    const handleSignIn = () => {
-      register(username, email, password);
+      setLoading(true);
+
+      register(username, email, password).then((res) => {
+         setLoading(false);
+         dispatch(login(res));
+      });
    };
 
    return (
@@ -83,8 +94,13 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
             <Span>Conditions</Span> and <Span>Privacy Policy</Span>
          </AgreementText>
 
-         <SignUpButton className='smallBold' onClick={handleSignIn}>
-            Continue
+         <SignUpButton
+            className='smallBold'
+            onClick={handleSignIn}
+            disabled={loading ? true : false}
+         >
+            {!loading && <span>Continue</span>}
+            {loading && <CircularProgress size={20} color='info' />}
          </SignUpButton>
 
          <AlternateText>
@@ -110,7 +126,7 @@ const SignUpMethodEmail = ({ setSignupClicked }) => {
 const Title = tw.h3`text-primary-dark`;
 const SignUpButton = tw(
    Button
-)`cursor-pointer text-white w-full rounded-full bg-primary-darkest py-5 px-10 mt-10 duration-300 transition-all`;
+)` cursor-pointer text-white w-full rounded-full bg-primary-darkest py-5 px-10 mt-10 duration-300 transition-all flex items-center justify-center`;
 const Form = tw.form`mt-16 space-y-12`;
 const AgreementText = tw.p`text-textBg-light text-left mt-14`;
 const Span = tw.span`text-secondary-darkest`;

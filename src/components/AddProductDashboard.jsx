@@ -12,12 +12,14 @@ import Collection from './Collection.jsx';
 import PlusOutlinedSVG from '../../public/svg/plusoutline.svg';
 import SelectMediaPlaceholderSVG from '../../public/svg/selectMediaPlaceholder.svg';
 
+import { doc, setDoc } from 'firebase/firestore';
+import { database } from '../firebase';
+
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const AddProductDashboard = () => {
    const [productName, setProductName] = useState('Untitled Product');
-   const [productDescription, setProductDescription] =
-      useState('');
+   const [productDescription, setProductDescription] = useState('');
    const [Collections, setCollections] = useState([
       {
          id: 0,
@@ -59,6 +61,15 @@ const AddProductDashboard = () => {
       'image',
    ];
 
+   const handleSave = async () => {
+      await setDoc(doc(database, 'products', 'ssLssA'), {
+         image: 'https://robohash.org/ipsasa',
+         name: 'Ipad Pro 2013 Model',
+         price: 10000,
+         type: ' piant pot',
+      });
+   };
+
    return (
       <>
          {/* Breadcrumb */}
@@ -79,7 +90,7 @@ const AddProductDashboard = () => {
 
             <NavButtonWrapper className='smallBold'>
                <NavButton1>Cancel</NavButton1>
-               <NavButton2>Save</NavButton2>
+               <NavButton2 onClick={handleSave}>Save</NavButton2>
             </NavButtonWrapper>
          </NavWrapper>
 
@@ -243,6 +254,6 @@ const Collectionss = tw.div`mt-7`;
 const InputAddCollection = tw.input`border-2 border-textBg-lightest rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-textBg-light text-textBg-light`;
 const EachCollectionWrapper = tw.div`flex space-x-4 mb-4 items-center`;
 const CreateCollectionText = tw.p`text-secondary-darkest`;
-const PriceFieldWrapper = tw.div`mt-7`
+const PriceFieldWrapper = tw.div`mt-7`;
 
 export default AddProductDashboard;

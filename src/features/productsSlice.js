@@ -7,11 +7,19 @@ const productSlice = createSlice({
    initialState: initialStateValue,
    reducers: {
       load: (state, action) => {
-         return (state = [action.payload]);
+         // state = []
+         // state.splice();
+         // state = [];
+         // return (state = [ action.payload]);
+         state.push(action.payload);
+         //  [action.payload];
+      },
+      unload: (state) => {
+         state = initialStateValue;
       },
    },
 });
 
-export const { load } = productSlice.actions;
+export const { load, unload } = productSlice.actions;
 
 export default productSlice.reducer;

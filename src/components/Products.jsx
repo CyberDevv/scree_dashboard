@@ -22,6 +22,8 @@ const Products = () => {
       query(collection(database, 'products'))
    );
 
+   // console.log(products.docs)
+
    // dispatches the products from firestore to redux store
    useEffect(() => {
       if (!productsLoading && products) {
