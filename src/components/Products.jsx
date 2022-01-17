@@ -2,7 +2,6 @@ import tw from 'twin.macro';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import Currency from 'react-currency-formatter';
-
 import IconButton from './IconButton';
 import HamburgerSVG from '../../public/svg/hamburger.svg';
 import ChedckedSVG from '../../public/svg/plainChecked.svg';
@@ -11,30 +10,34 @@ import { database } from '../firebase/index';
 import { useDispatch } from 'react-redux';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { load } from '../features/productsSlice';
-import { useEffect } from 'react';
-import { CircularProgress } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { CircularProgress, Skeleton } from '@mui/material';
+import { getProducts } from '../firebase/products.firebase.js';
+import { toast } from 'react-toastify';
 
 const Products = () => {
+   const [loading, setLoading] = useState(false);
    const dispatch = useDispatch();
 
-   // fetches the products from firestore database
-   const [products, productsLoading, productsError] = useCollection(
-      query(collection(database, 'products'))
-   );
-
-   // console.log(products.docs)
+   const user = useSelector((state) => state.user.user.uid);
 
    // dispatches the products from firestore to redux store
    useEffect(() => {
-      if (!productsLoading && products) {
-         products.docs.map((doc) => {
-            dispatch(load(doc.data()));
-         });
+      setLoading(true);
+      try {
+         if (user) {
+            getProducts(user).then((products) => {
+               dispatch(load(products));
+            });
+            setLoading(false);
+         }
+      } catch (error) {
+         toast.error(error);
       }
-   }, [dispatch, products, productsLoading]);
+   }, [dispatch, user]);
 
    // selects product list from redux store
-   const fromReduxProducts = useSelector((state) => state.products);
+   const products = useSelector((state) => state.products.products);
 
    return (
       <>
@@ -61,49 +64,93 @@ const Products = () => {
          </Nav>
 
          <div>
-            {productsLoading && (
-               <div css={[tw`w-full flex justify-center mt-8`]}>
-                  <CircularProgress />
-               </div>
+            {loading && (
+               <Product>
+                  <IconButton>
+                     <ChedckedSVG />
+                  </IconButton>
+                  <Ul>
+                     <SubLi>
+                        <p className='small'>
+                           <Skeleton variant='text' animation='wave' />
+                        </p>
+                     </SubLi>
+                     <SubLi>
+                        <ImageWrapper>
+                           <Skeleton
+                              variant='circular'
+                              width={44}
+                              height={44}
+                              animation='wave'
+                           />
+                        </ImageWrapper>
+                     </SubLi>
+                     <SubLi>
+                        <p className='small'>
+                           <Skeleton variant='text' animation='wave' />
+                        </p>
+                     </SubLi>
+                     <SubLi>
+                        <p className='small'>
+                           <Skeleton variant='text' animation='wave' />
+                        </p>
+                     </SubLi>
+                     <SubLi>
+                        <p className='small'>
+                           <Skeleton variant='text' animation='wave' />
+                        </p>
+                     </SubLi>
+                     <SubLi>
+                        <IconButton>
+                           <HamburgerSVG />
+                        </IconButton>
+                     </SubLi>
+                  </Ul>
+               </Product>
             )}
-            {fromReduxProducts.map(({ id, name, price, type, image }) => {
+
+            {!products && <h6 css={[tw`text-center`]}>You have no products</h6>}
+
+            {products?.map(({ id, name, price, type, image }, index) => {
                return (
-                  <Product key={id}>
-                     <IconButton>
-                        <ChedckedSVG />
-                     </IconButton>
-                     <Ul>
-                        <SubLi>
-                           <p className='small'>{id}</p>
-                        </SubLi>
-                        <SubLi>
-                           <ImageWrapper>
-                              <Image
-                                 src={image}
-                                 layout='fill'
-                                 className='productImage'
-                                 alt={name}
-                              />
-                           </ImageWrapper>
-                        </SubLi>
-                        <SubLi>
-                           <p className='small'>{name}</p>
-                        </SubLi>
-                        <SubLi>
-                           <p className='small'>{type}</p>
-                        </SubLi>
-                        <SubLi>
-                           <p className='small'>
-                              <Currency quantity={price} currency='NGN' />
-                           </p>
-                        </SubLi>
-                        <SubLi>
-                           <IconButton>
-                              <HamburgerSVG />
-                           </IconButton>
-                        </SubLi>
-                     </Ul>
-                  </Product>
+                  <div key={id}>
+                     <Product>
+                        <IconButton>
+                           <ChedckedSVG />
+                        </IconButton>
+                        <Ul>
+                           <SubLi>
+                              <p className='small'>{index + 1}</p>
+                           </SubLi>
+                           <SubLi>
+                              <ImageWrapper>
+                                 <Image
+                                    src={image}
+                                    layout='fill'
+                                    className='productImage'
+                                    alt={name}
+                                 />
+                              </ImageWrapper>
+                           </SubLi>
+                           <SubLi>
+                              <p className='small'>{name}</p>
+                           </SubLi>
+                           <SubLi>
+                              <p className='small'>{type}</p>
+                           </SubLi>
+                           <SubLi>
+                              <p className='small'>
+                                 <Currency quantity={price} currency='NGN' />
+                              </p>
+                           </SubLi>
+                           <SubLi>
+                              <IconButton>
+                                 <HamburgerSVG />
+                              </IconButton>
+                           </SubLi>
+                        </Ul>
+                     </Product>
+                  </div>
                );
             })}
          </div>
