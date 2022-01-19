@@ -6,9 +6,20 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 import { Button } from './TailwindStyles';
 import SocialMedia from './SocialMedia.jsx';
+import { addCollections } from '../firebase/collection.firebase';
+import { useSelector } from 'react-redux';
 
 const AddCollectionDashboard = () => {
-   const [collectionName, setCollectionName] = useState('Untitled Collection');
+   const [collectionName, setCollectionName] = useState('');
+   const [collectionImage, setCollectionImage] = useState('');
+
+   const user = useSelector((state) => state.user.user.uid);
+
+   const handleCancel = () => {};
+
+   const handleSave = () => {
+      addCollections(user, collectionName, collectionImage);
+   };
 
    return (
       <>
@@ -19,18 +30,20 @@ const AddCollectionDashboard = () => {
             </Link>
             ,
             <PresentPageText className='bodyBold'>
-               {collectionName}
+               {collectionName ? collectionName : 'Untitled Collection'}
             </PresentPageText>
             ,
          </BreadcrumbsWrapper>
 
          {/* Nav */}
          <NavWrapper>
-            <NavText>{collectionName}</NavText>
+            <NavText>
+               {collectionName ? collectionName : 'Untitled Collection'}
+            </NavText>
 
             <NavButtonWrapper className='smallBold'>
-               <NavButton1>Cancel</NavButton1>
-               <NavButton2>Save</NavButton2>
+               <NavButton1 onClick={handleCancel}>Cancel</NavButton1>
+               <NavButton2 onClick={handleSave}>Save</NavButton2>
             </NavButtonWrapper>
          </NavWrapper>
 
@@ -79,6 +92,10 @@ const AddCollectionDashboard = () => {
                               type='text'
                               id='addProduct'
                               placeholder='Add Collection name'
+                              value={collectionName}
+                              onChange={(e) =>
+                                 setCollectionName(e.target.value)
+                              }
                            />
                         </Label>
                      </div>

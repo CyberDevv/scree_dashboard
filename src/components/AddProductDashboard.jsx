@@ -82,9 +82,9 @@ const AddProductDashboard = () => {
       );
    };
 
-   function handleSelecetedTags(items) {
-      // console.log(items);
-   }
+   // function handleSelecetedTags(items) {
+   //    // console.log(items);
+   // }
 
    return (
       <>
