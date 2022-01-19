@@ -1,59 +1,59 @@
-import tw from 'twin.macro';
-import Image from 'next/image';
+import tw from "twin.macro";
+import Image from "next/image";
 
-import IconButton from './IconButton.jsx';
-import Search from '../../public/svg/search.svg';
-import Dropdown from '../../public/svg/dropdown.svg';
-import Notification from '../../public/svg/NavNotification.svg';
-import { login } from '../features/userSllice.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import IconButton from "./IconButton.jsx";
+import Search from "../../public/svg/search.svg";
+import Dropdown from "../../public/svg/dropdown.svg";
+import Notification from "../../public/svg/NavNotification.svg";
+import { login } from "../features/userSllice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const NavBar = () => {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-   useEffect(() => {
-      // gets the user from the local storage
-      const fromLocalStorage = JSON.parse(localStorage.getItem('user'));
+  useEffect(() => {
+    // gets the user from the local storage
+    const fromLocalStorage = JSON.parse(localStorage.getItem("user"));
 
-      // dispatches the user to the redux store
-      dispatch(login(fromLocalStorage));
-   }, [dispatch]);
+    // dispatches the user to the redux store
+    dispatch(login(fromLocalStorage));
+  }, [dispatch]);
 
-   const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
 
-   return (
-      <MainWrapper>
-         <SearchWrapper>
+  return (
+    <MainWrapper>
+      <SearchWrapper>
+        <IconButton>
+          <Search />
+        </IconButton>
+        <Input type="text" placeholder="Search" />
+      </SearchWrapper>
+
+      <OtherSection>
+        <IconButton>
+          <Notification />
+        </IconButton>
+
+        <UserWrapper>
+          <UserImage>
+            <Image
+              src={user?.photoURL || "/images/user.png"}
+              layout="fill"
+              alt="User"
+            />
+          </UserImage>
+          <UserName>
+            <Span className="body">{user?.displayName}</Span>
             <IconButton>
-               <Search />
+              <Dropdown />
             </IconButton>
-            <Input type='text' placeholder='Search' />
-         </SearchWrapper>
-
-         <OtherSection>
-            <IconButton>
-               <Notification />
-            </IconButton>
-
-            <UserWrapper>
-               <UserImage>
-                  <Image
-                     src={user?.photoURL || '/images/user.png'}
-                     layout='fill'
-                     alt='User'
-                  />
-               </UserImage>
-               <UserName>
-                  <Span className='body'>{user?.displayName}</Span>
-                  <IconButton>
-                     <Dropdown />
-                  </IconButton>
-               </UserName>
-            </UserWrapper>
-         </OtherSection>
-      </MainWrapper>
-   );
+          </UserName>
+        </UserWrapper>
+      </OtherSection>
+    </MainWrapper>
+  );
 };
 
 // Tailwind Styles

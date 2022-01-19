@@ -1,189 +1,189 @@
 :root {
-   --bg-color: #fafafa;
+  --bg-color: #fafafa;
 }
 
 body {
-   font-family: 'Inter', sans-serif !important;
-   background-color: var(--bg-color) !important;
+  font-family: "Inter", sans-serif !important;
+  background-color: var(--bg-color) !important;
 }
 
 h1 {
-   font-size: 56px !important;
-   font-weight: 700 !important;
-   line-height: 140% !important;
-   letter-spacing: 2.5% !important;
+  font-size: 56px !important;
+  font-weight: 700 !important;
+  line-height: 140% !important;
+  letter-spacing: 2.5% !important;
 }
 
 h2 {
-   font-size: 48px !important;
-   font-weight: 700 !important;
-   line-height: 67.2px !important;
-   letter-spacing: 0.025em !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 67.2px !important;
+  letter-spacing: 0.025em !important;
 }
 
 h3 {
-   font-size: 40px !important;
-   font-weight: 700 !important;
-   line-height: 56px !important;
-   letter-spacing: 0.005em !important;
+  font-size: 40px !important;
+  font-weight: 700 !important;
+  line-height: 56px !important;
+  letter-spacing: 0.005em !important;
 }
 
 h4 {
-   font-size: 32px !important;
-   font-weight: 700 !important;
-   line-height: 20px !important;
-   letter-spacing: 0.005em !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  letter-spacing: 0.005em !important;
 }
 
 h5 {
-   font-size: 24px !important;
-   font-weight: 700 !important;
-   line-height: 20px !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
 }
 
 h6 {
-   font-size: 20px !important;
-   font-weight: 500 !important;
-   line-height: 20px !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
 }
 
 .bodyBold {
-   font-size: 16px !important;
-   font-weight: 600 !important;
-   line-height: 20px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 20px !important;
 }
 
 .smallBold {
-   font-size: 14px !important;
-   font-weight: 600 !important;
-   line-height: 20px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 20px !important;
 }
 
 .body {
-   font-size: 16px !important;
-   font-weight: 400 !important;
-   line-height: 20px !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
 }
 
 .small {
-   font-size: 14px !important;
-   font-weight: 400 !important;
-   line-height: 22.4px !important;
-   letter-spacing: 0.01em;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 22.4px !important;
+  letter-spacing: 0.01em;
 }
 
 .tiny {
-   font-size: 12px !important;
-   font-weight: 400 !important;
-   line-height: 20px !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
 }
 
 .pretext {
-   font-size: 10px !important;
-   font-weight: 400 !important;
-   line-height: 14px !important;
-   letter-spacing: 0.025em !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  line-height: 14px !important;
+  letter-spacing: 0.025em !important;
 }
 
 .pattern {
-   background-image: url('../../public/svg/bgPattern.svg');
+  background-image: url("../../public/svg/bgPattern.svg");
 }
 
 .active {
-   background-color: var(--bg-color);
-   border-top-left-radius: 9999px;
-   border-bottom-left-radius: 9999px;
-   z-index: -1;
+  background-color: var(--bg-color);
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+  z-index: -1;
 }
 
 .active::after {
-   content: '';
-   background: transparent;
-   position: absolute;
-   height: 4rem;
-   width: 4rem;
-   border-radius: 9999px;
-   -webkit-border-radius: 9999px;
-   -moz-border-radius: 9999px;
-   -ms-border-radius: 9999px;
-   -o-border-radius: 9999px;
-   top: -4rem;
-   right: 0;
-   box-shadow: 35px 35px 0 5px var(--bg-color);
+  content: "";
+  background: transparent;
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  -ms-border-radius: 9999px;
+  -o-border-radius: 9999px;
+  top: -4rem;
+  right: 0;
+  box-shadow: 35px 35px 0 5px var(--bg-color);
 }
 
 .active::before {
-   content: '';
-   background: transparent;
-   position: absolute;
-   height: 4rem;
-   width: 4rem;
-   border-radius: 9999px;
-   -webkit-border-radius: 9999px;
-   -moz-border-radius: 9999px;
-   -ms-border-radius: 9999px;
-   -o-border-radius: 9999px;
-   bottom: -4rem;
-   right: 0;
-   box-shadow: 35px -35px 0 5px var(--bg-color);
+  content: "";
+  background: transparent;
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  -ms-border-radius: 9999px;
+  -o-border-radius: 9999px;
+  bottom: -4rem;
+  right: 0;
+  box-shadow: 35px -35px 0 5px var(--bg-color);
 }
 
 .active a {
-   fill: #0e122f;
+  fill: #0e122f;
 }
 
 .svg {
-   z-index: 10px;
-   fill: white;
-   transition: fill 0.3s ease-in-out;
-   -webkit-transition: fill 0.3s ease-in-out;
-   -moz-transition: fill 0.3s ease-in-out;
-   -ms-transition: fill 0.3s ease-in-out;
-   -o-transition: fill 0.3s ease-in-out;
+  z-index: 10px;
+  fill: white;
+  transition: fill 0.3s ease-in-out;
+  -webkit-transition: fill 0.3s ease-in-out;
+  -moz-transition: fill 0.3s ease-in-out;
+  -ms-transition: fill 0.3s ease-in-out;
+  -o-transition: fill 0.3s ease-in-out;
 }
 
 .active .svg:hover {
-   fill: #0e122f;
+  fill: #0e122f;
 }
 
 .svg:hover {
-   fill: #fa5020;
+  fill: #fa5020;
 }
 
 .productImage {
-   border-radius: 9999px;
-   -webkit-border-radius: 9999px;
-   -moz-border-radius: 9999px;
-   -ms-border-radius: 9999px;
-   -o-border-radius: 9999px;
-   object-fit: cover;
-   object-position: center center;
+  border-radius: 9999px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  -ms-border-radius: 9999px;
+  -o-border-radius: 9999px;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .ql-toolbar.ql-snow {
-   background-color: var(--bg-color);
-   border: 0 !important;
-   padding: 20px 20px 20px 10px !important;
+  background-color: var(--bg-color);
+  border: 0 !important;
+  padding: 20px 20px 20px 10px !important;
 }
 
 .ql-container.ql-snow {
-   background-color: white;
-   border: 0 !important;
-   padding: 20px !important;
+  background-color: white;
+  border: 0 !important;
+  padding: 20px !important;
 }
 
 .ql-editor {
-   padding: 0 !important;
+  padding: 0 !important;
 }
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-   border-radius: 10px;
-   -webkit-border-radius: 10px;
-   -moz-border-radius: 10px;
-   -ms-border-radius: 10px;
-   -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .activeSettings {
-   border: 2px solid #25307e;
+  border: 2px solid #25307e;
 }

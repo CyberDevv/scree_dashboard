@@ -12,11 +12,11 @@
 
 👤 **CyberDevv**
 
-* Website: https://ibrahim-odesola.netlify.app/
-* Twitter: [@cyberdevv](https://twitter.com/cyberdevv)
-* Github: [@cyberdevv](https://github.com/cyberdevv)
-* LinkedIn: [@ibrahim-odesola](https://linkedin.com/in/ibrahim-odesola)
+- Website: https://ibrahim-odesola.netlify.app/
+- Twitter: [@cyberdevv](https://twitter.com/cyberdevv)
+- Github: [@cyberdevv](https://github.com/cyberdevv)
+- LinkedIn: [@ibrahim-odesola](https://linkedin.com/in/ibrahim-odesola)
 
+---
 
-***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

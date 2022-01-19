@@ -1,122 +1,111 @@
-import tw from 'twin.macro';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Breadcrumbs, InputAdornment, TextField } from '@mui/material';
-import { Box } from '@mui/system';
+import tw from "twin.macro";
+import Link from "next/link";
+import Image from "next/image";
+import { Breadcrumbs, InputAdornment, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 
-import { Button } from './TailwindStyles';
+import { Button } from "./TailwindStyles";
 
 const WebsiteSettings = ({
-   setGeneralOpened,
-   gneralOpened,
-   setSettingsActive,
+  setGeneralOpened,
+  gneralOpened,
+  setSettingsActive,
 }) => {
-   return (
-      <MainWrapper>
-         {/* Breadcrumb */}
-         <BreadcrumbsWrapper separator='>>' aria-label='breadcrumb'>
-            <BackButton
-               onClick={() => {
-                  setGeneralOpened('');
-                  setSettingsActive('General');
-               }}
-            >
-               <BAnchor className='body'>General Settings</BAnchor>
-            </BackButton>
-            ,
-            <PresentPageText className='bodyBold'>
-               Website Settings
-            </PresentPageText>
-            ,
-         </BreadcrumbsWrapper>
+  return (
+    <MainWrapper>
+      {/* Breadcrumb */}
+      <BreadcrumbsWrapper separator=">>" aria-label="breadcrumb">
+        <BackButton
+          onClick={() => {
+            setGeneralOpened("");
+            setSettingsActive("General");
+          }}
+        >
+          <BAnchor className="body">General Settings</BAnchor>
+        </BackButton>
+        ,
+        <PresentPageText className="bodyBold">Website Settings</PresentPageText>
+        ,
+      </BreadcrumbsWrapper>
 
-         {/* Title */}
-         <Title>Website Settings</Title>
-         <Unpublished>
-            <UnpublisedTexr>Site is Unpublished</UnpublisedTexr>
-            <PublishButton>Publish now</PublishButton>
-         </Unpublished>
+      {/* Title */}
+      <Title>Website Settings</Title>
+      <Unpublished>
+        <UnpublisedTexr>Site is Unpublished</UnpublisedTexr>
+        <PublishButton>Publish now</PublishButton>
+      </Unpublished>
 
-         <div>
-            <SubTitle>Site Name</SubTitle>
-            <SubTitleDesc className='small'>
-               Edit your site name to help customers recognize your site better
-            </SubTitleDesc>
+      <div>
+        <SubTitle>Site Name</SubTitle>
+        <SubTitleDesc className="small">
+          Edit your site name to help customers recognize your site better
+        </SubTitleDesc>
 
-            <SubSubTitle>Site Name</SubSubTitle>
-            <TextField
-               sx={{ width: 450 }}
-               label='Site Name'
-               variant='outlined'
-            />
-         </div>
+        <SubSubTitle>Site Name</SubSubTitle>
+        <TextField sx={{ width: 450 }} label="Site Name" variant="outlined" />
+      </div>
 
-         <div>
-            <SubTitle>Site URL</SubTitle>
-            <SubTitleDesc className='small'>
-               Get your own branded domain or edit your free scree domain
-            </SubTitleDesc>
+      <div>
+        <SubTitle>Site URL</SubTitle>
+        <SubTitleDesc className="small">
+          Get your own branded domain or edit your free scree domain
+        </SubTitleDesc>
 
-            <SubSubTitle>Site Domain</SubSubTitle>
-            <SiteDomainWrapper>
-               <DomainText>https://scree.com/</DomainText>
-               <InputText type='text' placeholder='Site Name' />
-            </SiteDomainWrapper>
-            <ConnectText className='small'>Connect your own domain</ConnectText>
-         </div>
+        <SubSubTitle>Site Domain</SubSubTitle>
+        <SiteDomainWrapper>
+          <DomainText>https://scree.com/</DomainText>
+          <InputText type="text" placeholder="Site Name" />
+        </SiteDomainWrapper>
+        <ConnectText className="small">Connect your own domain</ConnectText>
+      </div>
 
-         <div>
-            <SubTitle>Favicon</SubTitle>
-            <SubTitleDesc className='small'>
-               A favicon is the small icon next to your site title. Get a custom
-               favicon to help visitors recognize your brand
-            </SubTitleDesc>
+      <div>
+        <SubTitle>Favicon</SubTitle>
+        <SubTitleDesc className="small">
+          A favicon is the small icon next to your site title. Get a custom
+          favicon to help visitors recognize your brand
+        </SubTitleDesc>
 
-            <SubSubTitle>Site Favicon</SubSubTitle>
-            <FiviconWrapper>
-               <Image src='/favicon.ico' height='40px' width='40px' alt='Logo'/>
-               <div>
-                  <P className='small'>
-                     Your favicon is currently the scree logo
-                  </P>
+        <SubSubTitle>Site Favicon</SubSubTitle>
+        <FiviconWrapper>
+          <Image src="/favicon.ico" height="40px" width="40px" alt="Logo" />
+          <div>
+            <P className="small">Your favicon is currently the scree logo</P>
 
-                  <ConnectText>
-                     Upgrade to a premium plan
-                     <P className='small'>
-                        {' '}
-                        Your favicon is currently the scree logo
-                     </P>
-                  </ConnectText>
-               </div>
-            </FiviconWrapper>
-         </div>
+            <ConnectText>
+              Upgrade to a premium plan
+              <P className="small"> Your favicon is currently the scree logo</P>
+            </ConnectText>
+          </div>
+        </FiviconWrapper>
+      </div>
 
-         <div>
-            <SubTitle>General Image</SubTitle>
-            <SubTitleDesc className='small'>
-               This is the image that is shared on your social networks to help
-               visitors recognize you
-            </SubTitleDesc>
+      <div>
+        <SubTitle>General Image</SubTitle>
+        <SubTitleDesc className="small">
+          This is the image that is shared on your social networks to help
+          visitors recognize you
+        </SubTitleDesc>
 
-            <SubSubTitle></SubSubTitle>
-            <FiviconWrapper>
-               <Image
-                  src='https://images.pexels.com/photos/10058566/pexels-photo-10058566.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                  height='200px'
-                  width='300px'
-                  objectFit='cover'
-                  alt='Logo'
-               />
-               <div>
-                  <UploadButton>Upload Image</UploadButton>
-                  <UploadText className='small'>
-                     These change will be live on website publising
-                  </UploadText>
-               </div>
-            </FiviconWrapper>
-         </div>
-      </MainWrapper>
-   );
+        <SubSubTitle></SubSubTitle>
+        <FiviconWrapper>
+          <Image
+            src="https://images.pexels.com/photos/10058566/pexels-photo-10058566.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            height="200px"
+            width="300px"
+            objectFit="cover"
+            alt="Logo"
+          />
+          <div>
+            <UploadButton>Upload Image</UploadButton>
+            <UploadText className="small">
+              These change will be live on website publising
+            </UploadText>
+          </div>
+        </FiviconWrapper>
+      </div>
+    </MainWrapper>
+  );
 };
 
 // Tailwind Styles
@@ -137,7 +126,7 @@ const FiviconWrapper = tw.div`flex items-center space-x-8`;
 const P = tw.p`inline text-textBg-dark`;
 const UploadText = tw.p`text-textBg-dark mt-4`;
 const UploadButton = tw(
-   Button
+  Button
 )`px-8 border-2 rounded-full py-3 transition duration-300 border-primary-darkest text-primary-darkest`;
 const Unpublished = tw.div`bg-white rounded-2xl px-4 py-4 flex items-center justify-between mt-4`;
 const UnpublisedTexr = tw.p`text-textBg-light`;

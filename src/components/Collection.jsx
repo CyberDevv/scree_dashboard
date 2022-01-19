@@ -1,41 +1,41 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-import IconButton from './IconButton';
-import CheckedFillSVG from '../../public/svg/checkedfill.svg';
-import CheckedOutlinedSVG from '../../public/svg/checkedoutlie.svg';
+import IconButton from "./IconButton";
+import CheckedFillSVG from "../../public/svg/checkedfill.svg";
+import CheckedOutlinedSVG from "../../public/svg/checkedoutlie.svg";
 
 const CollectionComponent = ({ collections, setCollections }) => {
-   const handleclick = (id) => () => {
-      const newTasks = [...collections];
+  const handleclick = (id) => () => {
+    const newTasks = [...collections];
 
-      const filteredTasks = newTasks.filter((item) => item.id === id)[0];
+    const filteredTasks = newTasks.filter((item) => item.id === id)[0];
 
-      filteredTasks.checked = !filteredTasks.checked;
+    filteredTasks.checked = !filteredTasks.checked;
 
-      setCollections(newTasks);
-   };
+    setCollections(newTasks);
+  };
 
-   return (
-      <>
-         {collections.map((Eachtask, index) => {
-            const { checked, task } = Eachtask;
-            return (
-               <EachTaskWrapper key={index}>
-                  {checked ? (
-                     <IconButton onClick={handleclick(index)}>
-                        <CheckedFillSVG />
-                     </IconButton>
-                  ) : (
-                     <IconButton onClick={handleclick(index)}>
-                        <CheckedOutlinedSVG />
-                     </IconButton>
-                  )}
-                  <P className='small'>{task}</P>
-               </EachTaskWrapper>
-            );
-         })}
-      </>
-   );
+  return (
+    <>
+      {collections.map((Eachtask, index) => {
+        const { checked, task } = Eachtask;
+        return (
+          <EachTaskWrapper key={index}>
+            {checked ? (
+              <IconButton onClick={handleclick(index)}>
+                <CheckedFillSVG />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleclick(index)}>
+                <CheckedOutlinedSVG />
+              </IconButton>
+            )}
+            <P className="small">{task}</P>
+          </EachTaskWrapper>
+        );
+      })}
+    </>
+  );
 };
 
 // Tailwind Styles

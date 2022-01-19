@@ -1,22 +1,22 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-import NavBar from './NavBar';
-import SideBar from './SideBar';
+import NavBar from "./NavBar";
+import SideBar from "./SideBar";
 
 const DashBoardPageSetup = ({ children }) => {
-   return (
-      <MainWrapper>
-         <InnerWrapper>
-            <Relative>
-               <SideBar />
-            </Relative>
-            <Wrapper>
-               <NavBar />
-               {children}
-            </Wrapper>
-         </InnerWrapper>
-      </MainWrapper>
-   );
+  return (
+    <MainWrapper>
+      <InnerWrapper>
+        <Relative>
+          <SideBar />
+        </Relative>
+        <Wrapper>
+          <NavBar />
+          {children}
+        </Wrapper>
+      </InnerWrapper>
+    </MainWrapper>
+  );
 };
 
 // Tailwind Styles

@@ -1,17 +1,17 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import Collections from '../../components/page_components/Collections.jsx';
+import Collections from "../../components/page_components/Collections.jsx";
 
 export default function CollectionsPage() {
-   return (
-      <>
-         <Head>
-            <title>Collections | Scree Dashboard</title>
-         </Head>
+  return (
+    <>
+      <Head>
+        <title>Collections | Scree Dashboard</title>
+      </Head>
 
-         <Collections />
-      </>
-   );
+      <Collections />
+    </>
+  );
 }
 
 // Tailwind styles

@@ -1,56 +1,53 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-
-import Facebook from '../../public/svg/ei_sc-facebook.svg';
-import Google from '../../public/svg/flat-color-icons_google.svg';
+import Facebook from "../../public/svg/ei_sc-facebook.svg";
+import Google from "../../public/svg/flat-color-icons_google.svg";
 import {
-   signInWithGoogle,
-   signInWithFacebook,
-} from '../firebase/auth.firebase';
+  signInWithGoogle,
+  signInWithFacebook,
+} from "../firebase/auth.firebase";
 
 const SignupMethods = ({ setSignupClicked }) => {
-   const handleSignupEmail = () => {
-      setSignupClicked(true);
-   };
+  const handleSignupEmail = () => {
+    setSignupClicked(true);
+  };
 
-   const handleGoogleSignIn = () => {
-      signInWithGoogle();
-   };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
 
-   const handleFacebookSignIn = () => {
-      signInWithFacebook();
-   };
+  const handleFacebookSignIn = () => {
+    signInWithFacebook();
+  };
 
-   return (
-      <div css={[tw`max-w-sm`]}>
-         <Title>Welcome! Let&apos;s get you started</Title>
-         <Description>Create a scree account to continue</Description>
+  return (
+    <div css={[tw`max-w-sm`]}>
+      <Title>Welcome! Let&apos;s get you started</Title>
+      <Description>Create a scree account to continue</Description>
 
-         <SignupWrapper>
-            <GoogleWrapper onClick={handleGoogleSignIn}>
-               <Google />
-               <SignupText className='smallBold'>
-                  Sign in with Google
-               </SignupText>
-            </GoogleWrapper>
+      <SignupWrapper>
+        <GoogleWrapper onClick={handleGoogleSignIn}>
+          <Google />
+          <SignupText className="smallBold">Sign in with Google</SignupText>
+        </GoogleWrapper>
 
-            <FacebookWrapper onClick={handleFacebookSignIn}>
-               <Facebook />
-               <SignupTextFacebook className='smallBold'>
-                  Sign in with Facebook
-               </SignupTextFacebook>
-            </FacebookWrapper>
-         </SignupWrapper>
+        <FacebookWrapper onClick={handleFacebookSignIn}>
+          <Facebook />
+          <SignupTextFacebook className="smallBold">
+            Sign in with Facebook
+          </SignupTextFacebook>
+        </FacebookWrapper>
+      </SignupWrapper>
 
-         <Divider>Or</Divider>
+      <Divider>Or</Divider>
 
-         <EmailWrapper onClick={handleSignupEmail}>
-            <SignupTextEmail className='smallBold'>
-               Sign up with email
-            </SignupTextEmail>
-         </EmailWrapper>
-      </div>
-   );
+      <EmailWrapper onClick={handleSignupEmail}>
+        <SignupTextEmail className="smallBold">
+          Sign up with email
+        </SignupTextEmail>
+      </EmailWrapper>
+    </div>
+  );
 };
 
 // Tailwind Styles

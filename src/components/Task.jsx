@@ -1,44 +1,44 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-import IconButton from './IconButton';
-import CheckedSVG from '../../public/svg/checked.svg';
-import { updateTask } from '../firebase/tasks.firebase';
-import UnCheckedSVG from '../../public/svg/unchecked.svg';
+import IconButton from "./IconButton";
+import CheckedSVG from "../../public/svg/checked.svg";
+import { updateTask } from "../firebase/tasks.firebase";
+import UnCheckedSVG from "../../public/svg/unchecked.svg";
 
 const TasksComponent = ({ tasks, setTasks }) => {
-   const handleclick = (id, task, completed) => () => {
-      const newTasks = [...tasks];
+  const handleclick = (id, task, completed) => () => {
+    const newTasks = [...tasks];
 
-      const filteredTasks = newTasks.filter((item) => item.id === id)[0];
+    const filteredTasks = newTasks.filter((item) => item.id === id)[0];
 
-      filteredTasks.completed = !filteredTasks.completed;
+    filteredTasks.completed = !filteredTasks.completed;
 
-      setTasks(newTasks);
+    setTasks(newTasks);
 
-      updateTask(id, task, !completed);
-   };
+    updateTask(id, task, !completed);
+  };
 
-   return (
-      <>
-         {tasks.map((Eachtask) => {
-            const { completed, task, id } = Eachtask;
-            return (
-               <EachTaskWrapper key={id}>
-                  {completed ? (
-                     <IconButton onClick={handleclick(id, task, completed)}>
-                        <CheckedSVG />
-                     </IconButton>
-                  ) : (
-                     <IconButton onClick={handleclick(id, task, completed)}>
-                        <UnCheckedSVG />
-                     </IconButton>
-                  )}
-                  <P className='small'>{task}</P>
-               </EachTaskWrapper>
-            );
-         })}
-      </>
-   );
+  return (
+    <>
+      {tasks.map((Eachtask) => {
+        const { completed, task, id } = Eachtask;
+        return (
+          <EachTaskWrapper key={id}>
+            {completed ? (
+              <IconButton onClick={handleclick(id, task, completed)}>
+                <CheckedSVG />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleclick(id, task, completed)}>
+                <UnCheckedSVG />
+              </IconButton>
+            )}
+            <P className="small">{task}</P>
+          </EachTaskWrapper>
+        );
+      })}
+    </>
+  );
 };
 
 // Tailwind Styles

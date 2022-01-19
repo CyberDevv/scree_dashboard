@@ -1,17 +1,17 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-import Logo from '../../public/svg/logo.svg';
+import Logo from "../../public/svg/logo.svg";
 
 const TwoSectionsLayout = ({ children }) => {
-   return (
-      <MainWrapper>
-         <LeftWrapper className='pattern'>
-            <Logo />
-            <Text>Create and manage your own website</Text>
-         </LeftWrapper>
-         <RightWrapper>{children}</RightWrapper>
-      </MainWrapper>
-   );
+  return (
+    <MainWrapper>
+      <LeftWrapper className="pattern">
+        <Logo />
+        <Text>Create and manage your own website</Text>
+      </LeftWrapper>
+      <RightWrapper>{children}</RightWrapper>
+    </MainWrapper>
+  );
 };
 
 // Tailwind Styles

@@ -1,15 +1,28 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-const InputField = ({ label, type, onChange, value, children, placeholder }) => {
-   return (
-      <InputWrapper>
-         <Input type={type} onChange={onChange} value={value} className= "small" placeholder= {placeholder} />
-         <Label className='pretext' htmlFor='text'>
-            {label}
-         </Label>
-         {children}
-      </InputWrapper>
-   );
+const InputField = ({
+  label,
+  type,
+  onChange,
+  value,
+  children,
+  placeholder,
+}) => {
+  return (
+    <InputWrapper>
+      <Input
+        type={type}
+        onChange={onChange}
+        value={value}
+        className="small"
+        placeholder={placeholder}
+      />
+      <Label className="pretext" htmlFor="text">
+        {label}
+      </Label>
+      {children}
+    </InputWrapper>
+  );
 };
 
 // Tailwind Styles

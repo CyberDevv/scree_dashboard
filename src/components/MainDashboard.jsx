@@ -1,263 +1,257 @@
-import tw from 'twin.macro';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import 'react-circular-progressbar/dist/styles.css';
+import tw from "twin.macro";
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import "react-circular-progressbar/dist/styles.css";
 import {
-   buildStyles,
-   CircularProgressbarWithChildren,
-} from 'react-circular-progressbar';
-import { FormControl, MenuItem, Select } from '@mui/material';
+  buildStyles,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
+import { FormControl, MenuItem, Select } from "@mui/material";
 
-import Task from './Task.jsx';
-import Graph from './Graph.jsx';
-import Products from './Products.jsx';
+import Task from "./Task.jsx";
+import Graph from "./Graph.jsx";
+import Products from "./Products.jsx";
 import {
-   addTask as addTaskToDb,
-   getTasks,
-} from '../firebase/tasks.firebase.js';
-import UnCheckedSVG from '../../public/svg/unchecked.svg';
-import ProgressProvider from '../utils/ProgressProvider.js';
-import ExternalLinkSVG from '../../public/svg/toexternallink.svg';
+  addTask as addTaskToDb,
+  getTasks,
+} from "../firebase/tasks.firebase.js";
+import UnCheckedSVG from "../../public/svg/unchecked.svg";
+import ProgressProvider from "../utils/ProgressProvider.js";
+import ExternalLinkSVG from "../../public/svg/toexternallink.svg";
 
 const MainDashboard = () => {
-   const user = useSelector((state) => state.user.user.uid);
+  const user = useSelector((state) => state.user.user.uid);
 
-   const [addTask, setAddTask] = useState(false);
-   const [tasks, setTasks] = useState([]);
-   const [period, setPeriod] = React.useState('');
+  const [addTask, setAddTask] = useState(false);
+  const [tasks, setTasks] = useState([]);
+  const [period, setPeriod] = React.useState("");
 
-   useEffect(() => {
-      if (user) {
-         getTasks(user).then((tasks) => {
-            setTasks(tasks);
-         });
-      }
-   }, [user]);
+  useEffect(() => {
+    if (user) {
+      getTasks(user).then((tasks) => {
+        setTasks(tasks);
+      });
+    }
+  }, [user]);
 
-   const handleCollectionChange = (event) => {
-      setPeriod(event.target.value);
-   };
+  const handleCollectionChange = (event) => {
+    setPeriod(event.target.value);
+  };
 
-   // function to toggle the input for adding tasks
-   const handleAddTask = () => {
-      setAddTask(!addTask);
-   };
+  // function to toggle the input for adding tasks
+  const handleAddTask = () => {
+    setAddTask(!addTask);
+  };
 
-   // Function to handle on enter key press on add task input
-   const handleOnEnter = (e) => {
-      if (e.key === 'Enter') {
-         const newTask = e.target.value;
-         const newTasks = [...tasks];
+  // Function to handle on enter key press on add task input
+  const handleOnEnter = (e) => {
+    if (e.key === "Enter") {
+      const newTask = e.target.value;
+      const newTasks = [...tasks];
 
-         newTasks.push({
-            completed: false,
-            task: newTask,
-         });
+      newTasks.push({
+        completed: false,
+        task: newTask,
+      });
 
-         // saves the task to db
-         addTaskToDb(user, newTask, false);
-         
-         // fetches the tasks from db
-         getTasks(user).then((tasks) => {
-            setTasks(tasks);
-         });
+      // saves the task to db
+      addTaskToDb(user, newTask, false);
 
-         setTasks(newTasks);
-         setAddTask(false);
-      }
-   };
+      // fetches the tasks from db
+      getTasks(user).then((tasks) => {
+        setTasks(tasks);
+      });
 
-   return (
-      <>
-         <Section>
-            {/* Main view */}
-            <Main>
-               <DeviceDownload>
-                  <div>
-                     <HeaderText>Manage Your sites on the Go!!!</HeaderText>
-                     <Text className='small'>
-                        Download the Scree mobile application and manage your
-                        business anywhere and anytime.
-                     </Text>
-                     <Download>
-                        <Anchor>
-                           <Image
-                              src='/images/Google Play Badge.png'
-                              width='135px'
-                              height='40px'
-                              alt='Google Play Badge'
-                           />
-                        </Anchor>
-                        <Anchor>
-                           <Image
-                              src='/images/App Store Badge.png'
-                              width='135px'
-                              height='40px'
-                              alt='App Store Badge'
-                           />
-                        </Anchor>
-                     </Download>
-                  </div>
-                  <ImageWrapper>
-                     <Image
-                        src='/images/devicedownload.png'
-                        width='300px'
-                        height='300px'
-                        alt='Device Download'
-                        priority={true}
-                     />
-                  </ImageWrapper>
-               </DeviceDownload>
+      setTasks(newTasks);
+      setAddTask(false);
+    }
+  };
 
-               {/* Analytics */}
-               <Wrapper>
-                  <SectionNav>
-                     <AnalyticsText>Analytics</AnalyticsText>
-                     <FormControl sx={{ minWidth: 120 }}>
-                        <Select
-                           value={period}
-                           onChange={handleCollectionChange}
-                           displayEmpty
-                           // inputProps={{ 'aria-label': 'Without label' }}
-                           sx={{ borderRadius: 3 }}
-                        >
-                           <MenuItem sx={{ color: '#929292' }} value=''>
-                              Days
-                           </MenuItem>
-                           {/* <MenuItem sx={{ color: '#929292' }} value={10}>
+  return (
+    <>
+      <Section>
+        {/* Main view */}
+        <Main>
+          <DeviceDownload>
+            <div>
+              <HeaderText>Manage Your sites on the Go!!!</HeaderText>
+              <Text className="small">
+                Download the Scree mobile application and manage your business
+                anywhere and anytime.
+              </Text>
+              <Download>
+                <Anchor>
+                  <Image
+                    src="/images/Google Play Badge.png"
+                    width="135px"
+                    height="40px"
+                    alt="Google Play Badge"
+                  />
+                </Anchor>
+                <Anchor>
+                  <Image
+                    src="/images/App Store Badge.png"
+                    width="135px"
+                    height="40px"
+                    alt="App Store Badge"
+                  />
+                </Anchor>
+              </Download>
+            </div>
+            <ImageWrapper>
+              <Image
+                src="/images/devicedownload.png"
+                width="300px"
+                height="300px"
+                alt="Device Download"
+                priority={true}
+              />
+            </ImageWrapper>
+          </DeviceDownload>
+
+          {/* Analytics */}
+          <Wrapper>
+            <SectionNav>
+              <AnalyticsText>Analytics</AnalyticsText>
+              <FormControl sx={{ minWidth: 120 }}>
+                <Select
+                  value={period}
+                  onChange={handleCollectionChange}
+                  displayEmpty
+                  // inputProps={{ 'aria-label': 'Without label' }}
+                  sx={{ borderRadius: 3 }}
+                >
+                  <MenuItem sx={{ color: "#929292" }} value="">
+                    Days
+                  </MenuItem>
+                  {/* <MenuItem sx={{ color: '#929292' }} value={10}>
                               Days
                            </MenuItem> */}
-                           <MenuItem sx={{ color: '#929292' }} value={20}>
-                              Weeks
-                           </MenuItem>
-                           <MenuItem sx={{ color: '#929292' }} value={30}>
-                              Months
-                           </MenuItem>
-                        </Select>
-                     </FormControl>
-                  </SectionNav>
-                  <Graph />
-               </Wrapper>
+                  <MenuItem sx={{ color: "#929292" }} value={20}>
+                    Weeks
+                  </MenuItem>
+                  <MenuItem sx={{ color: "#929292" }} value={30}>
+                    Months
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </SectionNav>
+            <Graph />
+          </Wrapper>
 
-               {/* Products */}
-               <ProductWrapper>
-                  <ProductNav>
-                     <p className='smallBold'>Products</p>
-                     <Link href='/products' passHref>
-                        <AddNew className='small'>View all</AddNew>
-                     </Link>
-                  </ProductNav>
+          {/* Products */}
+          <ProductWrapper>
+            <ProductNav>
+              <p className="smallBold">Products</p>
+              <Link href="/products" passHref>
+                <AddNew className="small">View all</AddNew>
+              </Link>
+            </ProductNav>
 
-                  <Products />
-               </ProductWrapper>
-            </Main>
+            <Products />
+          </ProductWrapper>
+        </Main>
 
-            {/* Aside */}
-            <Aside>
-               {/* Site view */}
-               <SiteView>
-                  <Overview1>
-                     <Overview1InnerWrapper>
-                        {/* Progressbar */}
-                        <ProgressBar>
-                           <ProgressProvider valueStart={0} valueEnd={50}>
-                              {(value) => (
-                                 <CircularProgressbarWithChildren
-                                    value={value}
-                                    // text='5 steps more'
-                                    styles={buildStyles({
-                                       rotation: 0.75,
-                                       strokeLinecap: 'round',
-                                       textSize: '16px',
-                                       pathTransitionDuration: 0.8,
-                                       pathColor: `#FA5020`,
-                                       textColor: '#121212',
-                                       trailColor: '#FEEBE6',
-                                    })}
-                                 >
-                                    <ProgressText>5 steps more</ProgressText>
-                                 </CircularProgressbarWithChildren>
-                              )}
-                           </ProgressProvider>
-                           {/* <Progress>
+        {/* Aside */}
+        <Aside>
+          {/* Site view */}
+          <SiteView>
+            <Overview1>
+              <Overview1InnerWrapper>
+                {/* Progressbar */}
+                <ProgressBar>
+                  <ProgressProvider valueStart={0} valueEnd={50}>
+                    {(value) => (
+                      <CircularProgressbarWithChildren
+                        value={value}
+                        // text='5 steps more'
+                        styles={buildStyles({
+                          rotation: 0.75,
+                          strokeLinecap: "round",
+                          textSize: "16px",
+                          pathTransitionDuration: 0.8,
+                          pathColor: `#FA5020`,
+                          textColor: "#121212",
+                          trailColor: "#FEEBE6",
+                        })}
+                      >
+                        <ProgressText>5 steps more</ProgressText>
+                      </CircularProgressbarWithChildren>
+                    )}
+                  </ProgressProvider>
+                  {/* <Progress>
                               <span>5 steps more</span>
                            </Progress> */}
-                        </ProgressBar>
+                </ProgressBar>
 
-                        {/* texts */}
-                        <OverviewTextLinkWrapper>
-                           <OverviewTextLink className='small'>
-                              Magic in Little things
-                           </OverviewTextLink>
-                           <ExternalAnchor
-                              className='small'
-                              href='https://milt.scree.com'
-                              target='_blank'
-                           >
-                              www.milt.scree.com
-                              <SVG>
-                                 <ExternalLinkSVG />
-                              </SVG>
-                           </ExternalAnchor>
-                        </OverviewTextLinkWrapper>
-                     </Overview1InnerWrapper>
+                {/* texts */}
+                <OverviewTextLinkWrapper>
+                  <OverviewTextLink className="small">
+                    Magic in Little things
+                  </OverviewTextLink>
+                  <ExternalAnchor
+                    className="small"
+                    href="https://milt.scree.com"
+                    target="_blank"
+                  >
+                    www.milt.scree.com
+                    <SVG>
+                      <ExternalLinkSVG />
+                    </SVG>
+                  </ExternalAnchor>
+                </OverviewTextLinkWrapper>
+              </Overview1InnerWrapper>
 
-                     {/* Button view site */}
-                     <ViewSite className='smallBold'>
-                        <Link href='/site-customizer'>
-                           <a>view Site</a>
-                        </Link>
-                     </ViewSite>
-                  </Overview1>
+              {/* Button view site */}
+              <ViewSite className="smallBold">
+                <Link href="/site-customizer">
+                  <a>view Site</a>
+                </Link>
+              </ViewSite>
+            </Overview1>
 
-                  <Overview2>
-                     <SiteStatus className='small'>
-                        Site Status: Published
-                     </SiteStatus>
-                  </Overview2>
-               </SiteView>
+            <Overview2>
+              <SiteStatus className="small">Site Status: Published</SiteStatus>
+            </Overview2>
+          </SiteView>
 
-               {/* Tasks */}
-               <Wrapper>
-                  <SectionNav>
-                     <p className='smallBold'>Tasks</p>
-                     <AddNew className='small' onClick={handleAddTask}>
-                        Add new
-                     </AddNew>
-                  </SectionNav>
+          {/* Tasks */}
+          <Wrapper>
+            <SectionNav>
+              <p className="smallBold">Tasks</p>
+              <AddNew className="small" onClick={handleAddTask}>
+                Add new
+              </AddNew>
+            </SectionNav>
 
-                  <Tasks>
-                     {/* shows when the task list is empty */}
-                     {tasks.length === 0 && (
-                        <SiteStatus className='small'>
-                           You have no tasks
-                        </SiteStatus>
-                     )}
+            <Tasks>
+              {/* shows when the task list is empty */}
+              {tasks.length === 0 && (
+                <SiteStatus className="small">You have no tasks</SiteStatus>
+              )}
 
-                     {/* shows when task list is not empty i.e when there is at least a task */}
-                     {tasks.length > 0 && (
-                        <Task setTasks={setTasks} tasks={tasks} />
-                     )}
+              {/* shows when task list is not empty i.e when there is at least a task */}
+              {tasks.length > 0 && <Task setTasks={setTasks} tasks={tasks} />}
 
-                     {/* Input to add task */}
-                     {addTask && (
-                        <EachTaskWrapper>
-                           <UnCheckedSVG />
-                           <InputAddTask
-                              type='text'
-                              placeholder='Add your task'
-                              onKeyDown={handleOnEnter}
-                           />
-                        </EachTaskWrapper>
-                     )}
-                  </Tasks>
-               </Wrapper>
-            </Aside>
-         </Section>
-      </>
-   );
+              {/* Input to add task */}
+              {addTask && (
+                <EachTaskWrapper>
+                  <UnCheckedSVG />
+                  <InputAddTask
+                    type="text"
+                    placeholder="Add your task"
+                    onKeyDown={handleOnEnter}
+                  />
+                </EachTaskWrapper>
+              )}
+            </Tasks>
+          </Wrapper>
+        </Aside>
+      </Section>
+    </>
+  );
 };
 
 // Tailwind Styles

@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import userSllice from './userSllice';
-import porductsReducer from './productsSlice';
+import userSllice from "./userSllice";
+import porductsReducer from "./productsSlice";
 
 export default configureStore({
-   reducer: {
-      products: porductsReducer,
-      user: userSllice,
-   },
+  reducer: {
+    products: porductsReducer,
+    user: userSllice,
+  },
 });

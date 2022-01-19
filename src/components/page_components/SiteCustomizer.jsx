@@ -1,20 +1,20 @@
-import tw from 'twin.macro';
+import tw from "twin.macro";
 
-import NavBar from '../SiteCustomizer/NavBar.jsx';
-import SideBar from '../SiteCustomizer/SideBar.jsx';
+import NavBar from "../SiteCustomizer/NavBar.jsx";
+import SideBar from "../SiteCustomizer/SideBar.jsx";
 
 const SiteCustomizer = () => {
-   return (
-      <>
-         <NavBar />
+  return (
+    <>
+      <NavBar />
 
-         <Main>
-            <SideBar />
+      <Main>
+        <SideBar />
 
-            <Site></Site>
-         </Main>
-      </>
-   );
+        <Site></Site>
+      </Main>
+    </>
+  );
 };
 // Tailwind styles
 const Main = tw.div`flex space-x-8 mt-4`;

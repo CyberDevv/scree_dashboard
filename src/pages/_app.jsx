@@ -1,23 +1,22 @@
-import { GlobalStyles } from 'twin.macro';
-import { Provider } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
+import { GlobalStyles } from "twin.macro";
+import { Provider } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 
+import store from "../features/index.store";
 
-import store from '../features/index.store';
-
-import '../styles/globals.css';
-import { ToastContainer } from 'react-toastify';
+import "../styles/globals.css";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
-   return (
-      <>
-         <Provider store={store}>
-            <GlobalStyles />
-            <Component {...pageProps} />
-            <ToastContainer theme='colored' />
-         </Provider>
-      </>
-   );
+  return (
+    <>
+      <Provider store={store}>
+        <GlobalStyles />
+        <Component {...pageProps} />
+        <ToastContainer theme="colored" />
+      </Provider>
+    </>
+  );
 }
 
 export default MyApp;

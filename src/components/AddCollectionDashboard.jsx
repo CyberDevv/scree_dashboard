@@ -1,134 +1,132 @@
-import tw from 'twin.macro';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import tw from "twin.macro";
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 
-import { Button } from './TailwindStyles';
-import SocialMedia from './SocialMedia.jsx';
-import { addCollections } from '../firebase/collection.firebase';
-import { useSelector } from 'react-redux';
+import { Button } from "./TailwindStyles";
+import SocialMedia from "./SocialMedia.jsx";
+import { addCollections } from "../firebase/collection.firebase";
+import { useSelector } from "react-redux";
 
 const AddCollectionDashboard = () => {
-   const [collectionName, setCollectionName] = useState('');
-   const [collectionImage, setCollectionImage] = useState('');
+  const [collectionName, setCollectionName] = useState("");
+  const [collectionImage, setCollectionImage] = useState("");
 
-   const user = useSelector((state) => state.user.user.uid);
+  const user = useSelector((state) => state.user.user.uid);
 
-   const handleCancel = () => {};
+  const handleCancel = () => {};
 
-   const handleSave = () => {
-      addCollections(user, collectionName, collectionImage);
-   };
+  const handleSave = () => {
+    addCollections(user, collectionName, collectionImage);
+  };
 
-   return (
-      <>
-         {/* Breadcrumb */}
-         <BreadcrumbsWrapper separator='>>' aria-label='breadcrumb'>
-            <Link href='/collections' passHref>
-               <BAnchor className='body'>Collections</BAnchor>
-            </Link>
-            ,
-            <PresentPageText className='bodyBold'>
-               {collectionName ? collectionName : 'Untitled Collection'}
-            </PresentPageText>
-            ,
-         </BreadcrumbsWrapper>
+  return (
+    <>
+      {/* Breadcrumb */}
+      <BreadcrumbsWrapper separator=">>" aria-label="breadcrumb">
+        <Link href="/collections" passHref>
+          <BAnchor className="body">Collections</BAnchor>
+        </Link>
+        ,
+        <PresentPageText className="bodyBold">
+          {collectionName ? collectionName : "Untitled Collection"}
+        </PresentPageText>
+        ,
+      </BreadcrumbsWrapper>
 
-         {/* Nav */}
-         <NavWrapper>
-            <NavText>
-               {collectionName ? collectionName : 'Untitled Collection'}
-            </NavText>
+      {/* Nav */}
+      <NavWrapper>
+        <NavText>
+          {collectionName ? collectionName : "Untitled Collection"}
+        </NavText>
 
-            <NavButtonWrapper className='smallBold'>
-               <NavButton1 onClick={handleCancel}>Cancel</NavButton1>
-               <NavButton2 onClick={handleSave}>Save</NavButton2>
-            </NavButtonWrapper>
-         </NavWrapper>
+        <NavButtonWrapper className="smallBold">
+          <NavButton1 onClick={handleCancel}>Cancel</NavButton1>
+          <NavButton2 onClick={handleSave}>Save</NavButton2>
+        </NavButtonWrapper>
+      </NavWrapper>
 
-         {/* Main Section */}
-         <Section>
-            <Main>
-               {/* Products in Collection */}
-               <Wrapper>
-                  <ProductsinCollectionText className='bodyBold'>
-                     Products in Collection <Span>2</Span>
-                  </ProductsinCollectionText>
+      {/* Main Section */}
+      <Section>
+        <Main>
+          {/* Products in Collection */}
+          <Wrapper>
+            <ProductsinCollectionText className="bodyBold">
+              Products in Collection <Span>2</Span>
+            </ProductsinCollectionText>
 
-                  <Div>
-                     <ImageWrapper>
-                        <Image
-                           src='https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
-                           layout='fill'
-                           objectFit='cover'
-                           alt='some pics'
-                        />
-                     </ImageWrapper>
+            <Div>
+              <ImageWrapper>
+                <Image
+                  src="https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="some pics"
+                />
+              </ImageWrapper>
 
-                     <ImageWrapper>
-                        <Image
-                           src='https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
-                           layout='fill'
-                           objectFit='cover'
-                           alt='some pics'
-                        />
-                     </ImageWrapper>
-                  </Div>
-               </Wrapper>
-            </Main>
+              <ImageWrapper>
+                <Image
+                  src="https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="some pics"
+                />
+              </ImageWrapper>
+            </Div>
+          </Wrapper>
+        </Main>
 
-            {/* Aside */}
-            <Aside>
-               {/* Basic Info */}
-               <Wrapper>
-                  <p className='smallBold'>Basic Info</p>
+        {/* Aside */}
+        <Aside>
+          {/* Basic Info */}
+          <Wrapper>
+            <p className="smallBold">Basic Info</p>
 
-                  <Form>
-                     <div>
-                        <Label htmlFor='addProduct'>
-                           Name
-                           <TextField
-                              type='text'
-                              id='addProduct'
-                              placeholder='Add Collection name'
-                              value={collectionName}
-                              onChange={(e) =>
-                                 setCollectionName(e.target.value)
-                              }
-                           />
-                        </Label>
-                     </div>
+            <Form>
+              <div>
+                <Label htmlFor="addProduct">
+                  Name
+                  <TextField
+                    type="text"
+                    id="addProduct"
+                    placeholder="Add Collection name"
+                    value={collectionName}
+                    onChange={(e) => setCollectionName(e.target.value)}
+                  />
+                </Label>
+              </div>
 
-                     <div>
-                        <Label htmlFor='addTag'>
-                           Collection Image
-                           <CollectionImage>
-                              <Image
-                                 src='https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
-                                 layout='fill'
-                                 objectFit='cover'
-                                 alt='some pics'
-                              />
-                           </CollectionImage>
-                        </Label>
-                     </div>
-                  </Form>
-               </Wrapper>
+              <div>
+                <Label htmlFor="addTag">
+                  Collection Image
+                  <CollectionImage>
+                    <Image
+                      src="https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                      layout="fill"
+                      objectFit="cover"
+                      alt="some pics"
+                    />
+                  </CollectionImage>
+                </Label>
+              </div>
+            </Form>
+          </Wrapper>
 
-               {/* Share with friends */}
-               <Wrapper>
-                  <p className='bodyBold'>Share to your friends</p>
-                  <SharDescription className='small'>
-                     Share this to your social media accounts in just on click
-                  </SharDescription>
+          {/* Share with friends */}
+          <Wrapper>
+            <p className="bodyBold">Share to your friends</p>
+            <SharDescription className="small">
+              Share this to your social media accounts in just on click
+            </SharDescription>
 
-                  <SocialMedia />
-               </Wrapper>
-            </Aside>
-         </Section>
-      </>
-   );
+            <SocialMedia />
+          </Wrapper>
+        </Aside>
+      </Section>
+    </>
+  );
 };
 
 // Tailwind Styles
@@ -139,11 +137,11 @@ const NavWrapper = tw.nav`w-full mt-6 flex justify-between items-center`;
 const NavText = tw.h5`inline`;
 const NavButtonWrapper = tw.div`space-x-8 flex items-center`;
 const NavButton = tw(
-   Button
+  Button
 )`px-2 py-4 rounded-full w-[169px] transition duration-300`;
 const NavButton1 = tw(NavButton)`border-2`;
 const NavButton2 = tw(
-   NavButton
+  NavButton
 )`bg-primary-darkest text-white flex items-center justify-center space-x-4`;
 const Section = tw.div`grid grid-cols-[1.5fr 1fr] my-4 gap-x-8 pb-20`;
 const Main = tw.main`column-span[1.5fr] space-y-8`;
