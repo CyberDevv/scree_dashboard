@@ -19,7 +19,7 @@ const ProductsDashboard = () => {
    };
 
    return (
-      <>
+      <section css={[tw`pb-16`]}>
          {/* Nav */}
          <NavWrapper>
             <NavText>
@@ -92,7 +92,7 @@ const ProductsDashboard = () => {
 
          {/* Product lists */}
          <Products />
-      </>
+      </section>
    );
 };
 

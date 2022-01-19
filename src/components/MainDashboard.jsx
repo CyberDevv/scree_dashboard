@@ -58,7 +58,7 @@ const MainDashboard = () => {
 
          // saves the task to db
          addTaskToDb(user, newTask, false);
-         
+
          // fetches the tasks from db
          getTasks(user).then((tasks) => {
             setTasks(tasks);
@@ -150,7 +150,7 @@ const MainDashboard = () => {
                      </Link>
                   </ProductNav>
 
-                  <Products />
+                  <Products sliceNum={-5} />
                </ProductWrapper>
             </Main>
 
@@ -261,7 +261,7 @@ const MainDashboard = () => {
 };
 
 // Tailwind Styles
-const Section = tw.div`grid grid-cols-[1.5fr 1fr] my-4 gap-x-8`;
+const Section = tw.div`grid grid-cols-[1.5fr 1fr] my-4 pb-16 gap-x-8`;
 const Main = tw.main`column-span[1.5fr] space-y-8`;
 const Aside = tw.aside`space-y-8`;
 const DeviceDownload = tw.div`bg-primary-darkest space-x-24 text-white flex justify-between w-full items-center px-10 py-4 rounded-2xl`;
