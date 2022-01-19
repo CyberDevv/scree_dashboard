@@ -5,6 +5,7 @@ module.exports = {
          'images.pexels.com',
          'robohash.org',
          'lh3.googleusercontent.com',
+         'via.placeholder.com',
       ],
    },
 };

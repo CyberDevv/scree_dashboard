@@ -3,24 +3,30 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { IconButton } from '@mui/material';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import { useSelector } from 'react-redux';
+import {
+   IconButton,
+   Breadcrumbs,
+   TextField as MUITextField,
+} from '@mui/material';
 
 import 'react-quill/dist/quill.snow.css';
 import { Button } from './TailwindStyles';
 import Collection from './Collection.jsx';
+import TaggedTextField from './TaggedTextfield.jsx';
+import { addProduct } from '../firebase/products.firebase';
 import PlusOutlinedSVG from '../../public/svg/plusoutline.svg';
 import SelectMediaPlaceholderSVG from '../../public/svg/selectMediaPlaceholder.svg';
-
-import { doc, setDoc } from 'firebase/firestore';
-import { database } from '../firebase';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const AddProductDashboard = () => {
-   const [productName, setProductName] = useState('Untitled Product');
+   const [media, setMedia] = useState([]);
+   const [price, setPrice] = useState('');
+   const [productName, setProductName] = useState('');
+   const [selectedItem, setSelectedItem] = useState([]);
    const [productDescription, setProductDescription] = useState('');
-   const [Collections, setCollections] = useState([
+   const [collections, setCollections] = useState([
       {
          id: 0,
          checked: true,
@@ -32,6 +38,8 @@ const AddProductDashboard = () => {
          task: 'All Products',
       },
    ]);
+
+   const user = useSelector((state) => state.user.user.uid);
 
    const modules = {
       toolbar: [
@@ -47,6 +55,7 @@ const AddProductDashboard = () => {
          ['clean'],
       ],
    };
+
    const formats = [
       'header',
       'bold',
@@ -62,13 +71,20 @@ const AddProductDashboard = () => {
    ];
 
    const handleSave = async () => {
-      await setDoc(doc(database, 'products', 'ssLssA'), {
-         image: 'https://robohash.org/ipsasa',
-         name: 'Ipad Pro 2013 Model',
-         price: 10000,
-         type: ' piant pot',
-      });
+      addProduct(
+         user,
+         media,
+         productName,
+         selectedItem,
+         price,
+         collections,
+         productDescription
+      );
    };
+
+   function handleSelecetedTags(items) {
+      // console.log(items);
+   }
 
    return (
       <>
@@ -79,14 +95,14 @@ const AddProductDashboard = () => {
             </Link>
             ,
             <PresentPageText className='bodyBold'>
-               {productName}
+               {productName ? productName : 'Untitled Product'}
             </PresentPageText>
             ,
          </BreadcrumbsWrapper>
 
          {/* Nav */}
          <NavWrapper>
-            <NavText>{productName}</NavText>
+            <NavText>{productName ? productName : 'Untitled Product'}</NavText>
 
             <NavButtonWrapper className='smallBold'>
                <NavButton1>Cancel</NavButton1>
@@ -159,6 +175,8 @@ const AddProductDashboard = () => {
                            type='text'
                            id='addProduct'
                            placeholder='₦20,000'
+                           value={price}
+                           onChange={(e) => setPrice(e.target.value)}
                         />
                      </Label>
                   </PriceFieldWrapper>
@@ -172,24 +190,30 @@ const AddProductDashboard = () => {
                   <p className='smallBold'>Basic Info</p>
 
                   <Form>
+                     {/* product name */}
                      <div>
                         <Label htmlFor='addProduct'>
                            Name
                            <TextField
-                              type='text'
-                              id='addProduct'
+                              value={productName}
+                              onChange={(e) => setProductName(e.target.value)}
+                              fullWidth
                               placeholder='Add product name'
                            />
                         </Label>
                      </div>
 
+                     {/* product tag */}
                      <div>
                         <Label htmlFor='addTag'>
                            Add Tag
-                           <TextField
-                              type='text'
-                              id='addTag'
+                           <TagField
+                              fullWidth
+                              // selectedTags={handleSelecetedTags}
+                              id='tags'
                               placeholder='New Arrivals'
+                              selectedItem={selectedItem}
+                              setSelectedItem={setSelectedItem}
                            />
                         </Label>
                      </div>
@@ -203,7 +227,7 @@ const AddProductDashboard = () => {
                   <Collectionss>
                      <Collection
                         setCollections={setCollections}
-                        collections={Collections}
+                        collections={collections}
                      />
 
                      <EachCollectionWrapper>
@@ -249,9 +273,9 @@ const Input = tw.input`hidden`;
 const ImageWrapper = tw.div`relative w-full max-w-[250px] h-[120px] rounded-2xl overflow-hidden`;
 const Form = tw.form`mt-8 space-y-7`;
 const Label = tw.label``;
-const TextField = tw.input`block mt-5 border-2 border-textBg-lightest rounded-xl w-full max-w-[350px] px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-textBg-lightest`;
+const TextField = tw(MUITextField)`block max-w-[350px] px-3.5 py-2.5`;
+const TagField = tw(TaggedTextField)`block max-w-[350px] px-3.5 py-2.5`;
 const Collectionss = tw.div`mt-7`;
-const InputAddCollection = tw.input`border-2 border-textBg-lightest rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-textBg-light text-textBg-light`;
 const EachCollectionWrapper = tw.div`flex space-x-4 mb-4 items-center`;
 const CreateCollectionText = tw.p`text-secondary-darkest`;
 const PriceFieldWrapper = tw.div`mt-7`;

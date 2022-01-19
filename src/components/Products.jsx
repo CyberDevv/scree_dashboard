@@ -1,19 +1,16 @@
 import tw from 'twin.macro';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { Chip, Skeleton } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Currency from 'react-currency-formatter';
+import { useSelector, useDispatch } from 'react-redux';
+
 import IconButton from './IconButton';
+import { load } from '../features/productsSlice';
 import HamburgerSVG from '../../public/svg/hamburger.svg';
 import ChedckedSVG from '../../public/svg/plainChecked.svg';
-import { collection, query } from 'firebase/firestore';
-import { database } from '../firebase/index';
-import { useDispatch } from 'react-redux';
-import { useCollection } from 'react-firebase-hooks/firestore';
-import { load } from '../features/productsSlice';
-import { useEffect, useState } from 'react';
-import { CircularProgress, Skeleton } from '@mui/material';
 import { getProducts } from '../firebase/products.firebase.js';
-import { toast } from 'react-toastify';
 
 const Products = () => {
    const [loading, setLoading] = useState(false);
@@ -111,7 +108,7 @@ const Products = () => {
 
             {!products && <h6 css={[tw`text-center`]}>You have no products</h6>}
 
-            {products?.map(({ id, name, price, type, image }, index) => {
+            {products?.map(({ id, productName, price, tags, image }, index) => {
                return (
                   <div key={id}>
                      <Product>
@@ -125,18 +122,32 @@ const Products = () => {
                            <SubLi>
                               <ImageWrapper>
                                  <Image
-                                    src={image}
+                                    src={
+                                       image || 'https://via.placeholder.com/44'
+                                    }
                                     layout='fill'
                                     className='productImage'
-                                    alt={name}
+                                    alt={productName}
                                  />
                               </ImageWrapper>
                            </SubLi>
                            <SubLi>
-                              <p className='small'>{name}</p>
+                              <p className='small'>{productName}</p>
                            </SubLi>
                            <SubLi>
-                              <p className='small'>{type}</p>
+                              <div css={[tw`space-x-1`]}>
+                                 {tags.slice(0, 2).map((tag) => (
+                                    <Chip
+                                       sx={{
+                                          bgcolor: '#afc5f23f',
+                                          color: '#062666',
+                                       }}
+                                       key={tag}
+                                       label={tag}
+                                    />
+                                 ))}
+                                 {tags.length > 2 && <span>...</span>}
+                              </div>
                            </SubLi>
                            <SubLi>
                               <p className='small'>

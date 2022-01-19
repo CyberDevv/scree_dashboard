@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 import { database } from '../firebase/index';
 
@@ -20,10 +20,43 @@ export const getProducts = async (uid) => {
             ...doc.data(),
          });
       });
-     
-     return products;
+
+      return products;
    } catch (error) {
       toast.error(error.message);
-      console.log(error)
+      console.log(error);
+   }
+};
+
+export const addProduct = async (
+   uid,
+   media,
+   productName,
+   tags,
+   price,
+   collections,
+   productDesc
+) => {
+   try {
+      const data = {
+         uid,
+         media,
+         productName,
+         tags,
+         price,
+         collections,
+         productDesc,
+         createdAt: new Date().toISOString(),
+      };
+
+      // console.log(data);
+
+      const res = await addDoc(collection(database, 'products'), data);
+
+      toast.success('Product added successfully');
+      
+      return true;
+   } catch (error) {
+      toast.error(error.message);
    }
 };
