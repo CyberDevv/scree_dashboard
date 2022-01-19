@@ -1,42 +1,40 @@
 import tw from 'twin.macro';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import 'react-circular-progressbar/dist/styles.css';
 import {
    buildStyles,
    CircularProgressbarWithChildren,
 } from 'react-circular-progressbar';
+import { FormControl, MenuItem, Select } from '@mui/material';
 
 import Task from './Task.jsx';
 import Graph from './Graph.jsx';
 import Products from './Products.jsx';
+import {
+   addTask as addTaskToDb,
+   getTasks,
+} from '../firebase/tasks.firebase.js';
 import UnCheckedSVG from '../../public/svg/unchecked.svg';
 import ProgressProvider from '../utils/ProgressProvider.js';
 import ExternalLinkSVG from '../../public/svg/toexternallink.svg';
-import { FormControl, MenuItem, Select } from '@mui/material';
 
 const MainDashboard = () => {
-   const [addTask, setAddTask] = useState(false);
-   const [tasks, setTasks] = useState([
-      {
-         id: 0,
-         completed: true,
-         task: 'Create my bookstore website',
-      },
-      {
-         id: 1,
-         completed: false,
-         task: 'Finish the development of the website',
-      },
-      {
-         id: 2,
-         completed: false,
-         task: 'Deploy the website to the server',
-      },
-   ]);
+   const user = useSelector((state) => state.user.user.uid);
 
+   const [addTask, setAddTask] = useState(false);
+   const [tasks, setTasks] = useState([]);
    const [period, setPeriod] = React.useState('');
+
+   useEffect(() => {
+      if (user) {
+         getTasks(user).then((tasks) => {
+            setTasks(tasks);
+         });
+      }
+   }, [user]);
 
    const handleCollectionChange = (event) => {
       setPeriod(event.target.value);
@@ -47,25 +45,25 @@ const MainDashboard = () => {
       setAddTask(!addTask);
    };
 
-   const handleAddProduct = () => {
-      //
-   };
-
    // Function to handle on enter key press on add task input
    const handleOnEnter = (e) => {
       if (e.key === 'Enter') {
          const newTask = e.target.value;
          const newTasks = [...tasks];
 
-         let id = 3;
-
          newTasks.push({
-            id: id,
             completed: false,
             task: newTask,
          });
 
-         id++;
+         // saves the task to db
+         addTaskToDb(user, newTask, false);
+         
+         // fetches the tasks from db
+         getTasks(user).then((tasks) => {
+            setTasks(tasks);
+         });
+
          setTasks(newTasks);
          setAddTask(false);
       }
@@ -147,9 +145,9 @@ const MainDashboard = () => {
                <ProductWrapper>
                   <ProductNav>
                      <p className='smallBold'>Products</p>
-                     <AddNew className='small' onClick={handleAddProduct}>
-                        Add new
-                     </AddNew>
+                     <Link href='/products' passHref>
+                        <AddNew className='small'>View all</AddNew>
+                     </Link>
                   </ProductNav>
 
                   <Products />
@@ -231,8 +229,19 @@ const MainDashboard = () => {
                   </SectionNav>
 
                   <Tasks>
-                     <Task setTasks={setTasks} tasks={tasks} />
+                     {/* shows when the task list is empty */}
+                     {tasks.length === 0 && (
+                        <SiteStatus className='small'>
+                           You have no tasks
+                        </SiteStatus>
+                     )}
 
+                     {/* shows when task list is not empty i.e when there is at least a task */}
+                     {tasks.length > 0 && (
+                        <Task setTasks={setTasks} tasks={tasks} />
+                     )}
+
+                     {/* Input to add task */}
                      {addTask && (
                         <EachTaskWrapper>
                            <UnCheckedSVG />
@@ -273,7 +282,7 @@ const ExternalAnchor = tw.a`text-textBg-lightest flex items-center`;
 const SVG = tw.i`ml-2`;
 const ViewSite = tw.button`bg-secondary-darkest transition duration-300 text-white rounded-full px-4 py-2 hover:ring hover:ring-offset-2 hover:ring-secondary-darkest`;
 const SiteStatus = tw.p`text-textBg-light`;
-const AddNew = tw.button`text-primary-light hover:text-primary-dark transition-colors duration-300`;
+const AddNew = tw.a`cursor-pointer text-primary-light hover:text-primary-dark transition-colors duration-300`;
 const Tasks = tw.div`mt-5`;
 const InputAddTask = tw.input`border-2 border-textBg-lightest rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-textBg-light text-textBg-light`;
 const EachTaskWrapper = tw.div`flex space-x-4 mb-4 items-center`;

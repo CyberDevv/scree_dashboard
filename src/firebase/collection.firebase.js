@@ -39,7 +39,7 @@ export const addCollections = async (uid, collectionName, collectionImage) => {
 
       // console.log(data);
 
-      const res = await addDoc(collection(database, 'collection'), data);
+      const res = await addDoc(collection(database, 'collections'), data);
 
       toast.success('Collection added successfully');
 

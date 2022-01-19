@@ -2,10 +2,11 @@ import tw from 'twin.macro';
 
 import IconButton from './IconButton';
 import CheckedSVG from '../../public/svg/checked.svg';
+import { updateTask } from '../firebase/tasks.firebase';
 import UnCheckedSVG from '../../public/svg/unchecked.svg';
 
 const TasksComponent = ({ tasks, setTasks }) => {
-   const handleclick = (id) => () => {
+   const handleclick = (id, task, completed) => () => {
       const newTasks = [...tasks];
 
       const filteredTasks = newTasks.filter((item) => item.id === id)[0];
@@ -13,20 +14,22 @@ const TasksComponent = ({ tasks, setTasks }) => {
       filteredTasks.completed = !filteredTasks.completed;
 
       setTasks(newTasks);
+
+      updateTask(id, task, !completed);
    };
 
    return (
       <>
-         {tasks.map((Eachtask, index) => {
-            const { completed, task } = Eachtask;
+         {tasks.map((Eachtask) => {
+            const { completed, task, id } = Eachtask;
             return (
-               <EachTaskWrapper key={index}>
+               <EachTaskWrapper key={id}>
                   {completed ? (
-                     <IconButton onClick={handleclick(index)}>
+                     <IconButton onClick={handleclick(id, task, completed)}>
                         <CheckedSVG />
                      </IconButton>
                   ) : (
-                     <IconButton onClick={handleclick(index)}>
+                     <IconButton onClick={handleclick(id, task, completed)}>
                         <UnCheckedSVG />
                      </IconButton>
                   )}
