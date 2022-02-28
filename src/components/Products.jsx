@@ -1,179 +1,174 @@
-import tw from 'twin.macro';
-import Image from 'next/image';
-import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
-import { Chip, Skeleton } from '@mui/material';
-import Currency from 'react-currency-formatter';
-import { useSelector, useDispatch } from 'react-redux';
+import tw from "twin.macro";
+import Image from "next/image";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { Chip, Skeleton } from "@mui/material";
+import Currency from "react-currency-formatter";
+import { useSelector, useDispatch } from "react-redux";
 
-import IconButton from './IconButton';
-import { load } from '../features/productsSlice';
-import HamburgerSVG from '../../public/svg/hamburger.svg';
-import ChedckedSVG from '../../public/svg/plainChecked.svg';
-import { getProducts } from '../firebase/products.firebase.js';
+import IconButton from "./IconButton";
+import { load } from "../features/productsSlice";
+import HamburgerSVG from "../../public/svg/hamburger.svg";
+import ChedckedSVG from "../../public/svg/plainChecked.svg";
+import { getProducts } from "../firebase/products.firebase.js";
 
 const Products = ({ sliceNum }) => {
-   const [loading, setLoading] = useState(false);
-   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-   const user = useSelector((state) => state.user.user.uid);
+  const user = useSelector((state) => state.user.user.uid);
 
-   // dispatches the products from firestore to redux store
-   useEffect(() => {
-      setLoading(true);
-      try {
-         if (user) {
-            getProducts(user).then((products) => {
-               dispatch(load(products));
-            });
-            setLoading(false);
-         }
-      } catch (error) {
-         toast.error(error);
+  // dispatches the products from firestore to redux store
+  useEffect(() => {
+    setLoading(true);
+    try {
+      if (user) {
+        getProducts(user).then((products) => {
+          dispatch(load(products));
+        });
+        setLoading(false);
       }
-   }, [dispatch, user]);
+    } catch (error) {
+      toast.error(error);
+    }
+  }, [dispatch, user]);
 
-   // selects product list from redux store
-   const products = useSelector((state) => state.products.products);
+  // selects product list from redux store
+  const products = useSelector((state) => state.products.products);
 
-   return (
-      <>
-         <Nav>
+  return (
+    <>
+      <Nav>
+        <IconButton>
+          <ChedckedSVG />
+        </IconButton>
+        <Ul>
+          <Li>
+            <p className="small">No.</p>
+          </Li>
+          <Li></Li>
+          <Li>
+            <p className="small">Name</p>
+          </Li>
+          <Li>
+            <p className="small">Type</p>
+          </Li>
+          <Li>
+            <p className="small">Price</p>
+          </Li>
+          <Li></Li>
+        </Ul>
+      </Nav>
+
+      <div>
+        {loading && (
+          <Product>
             <IconButton>
-               <ChedckedSVG />
+              <ChedckedSVG />
             </IconButton>
             <Ul>
-               <Li>
-                  <p className='small'>No.</p>
-               </Li>
-               <Li></Li>
-               <Li>
-                  <p className='small'>Name</p>
-               </Li>
-               <Li>
-                  <p className='small'>Type</p>
-               </Li>
-               <Li>
-                  <p className='small'>Price</p>
-               </Li>
-               <Li></Li>
+              <SubLi>
+                <p className="small">
+                  <Skeleton variant="text" animation="wave" />
+                </p>
+              </SubLi>
+              <SubLi>
+                <ImageWrapper>
+                  <Skeleton
+                    variant="circular"
+                    width={44}
+                    height={44}
+                    animation="wave"
+                  />
+                </ImageWrapper>
+              </SubLi>
+              <SubLi>
+                <p className="small">
+                  <Skeleton variant="text" animation="wave" />
+                </p>
+              </SubLi>
+              <SubLi>
+                <p className="small">
+                  <Skeleton variant="text" animation="wave" />
+                </p>
+              </SubLi>
+              <SubLi>
+                <p className="small">
+                  <Skeleton variant="text" animation="wave" />
+                </p>
+              </SubLi>
+              <SubLi>
+                <IconButton>
+                  <HamburgerSVG />
+                </IconButton>
+              </SubLi>
             </Ul>
-         </Nav>
+          </Product>
+        )}
 
-         <div>
-            {loading && (
-               <Product>
+        {products.length === 0 && (
+          <p css={[tw`text-center text-textBg-light`]}>You have no products</p>
+        )}
+
+        {products
+          ?.slice(sliceNum || 0)
+          .map(({ id, productName, price, tags, image }, index) => {
+            return (
+              <div key={id}>
+                <Product>
                   <IconButton>
-                     <ChedckedSVG />
+                    <ChedckedSVG />
                   </IconButton>
                   <Ul>
-                     <SubLi>
-                        <p className='small'>
-                           <Skeleton variant='text' animation='wave' />
-                        </p>
-                     </SubLi>
-                     <SubLi>
-                        <ImageWrapper>
-                           <Skeleton
-                              variant='circular'
-                              width={44}
-                              height={44}
-                              animation='wave'
-                           />
-                        </ImageWrapper>
-                     </SubLi>
-                     <SubLi>
-                        <p className='small'>
-                           <Skeleton variant='text' animation='wave' />
-                        </p>
-                     </SubLi>
-                     <SubLi>
-                        <p className='small'>
-                           <Skeleton variant='text' animation='wave' />
-                        </p>
-                     </SubLi>
-                     <SubLi>
-                        <p className='small'>
-                           <Skeleton variant='text' animation='wave' />
-                        </p>
-                     </SubLi>
-                     <SubLi>
-                        <IconButton>
-                           <HamburgerSVG />
-                        </IconButton>
-                     </SubLi>
+                    <SubLi>
+                      <p className="small">{index + 1}</p>
+                    </SubLi>
+                    <SubLi>
+                      <ImageWrapper>
+                        <Image
+                          src={image || "https://via.placeholder.com/44"}
+                          layout="fill"
+                          className="productImage"
+                          alt={productName}
+                        />
+                      </ImageWrapper>
+                    </SubLi>
+                    <SubLi>
+                      <p className="small">{productName}</p>
+                    </SubLi>
+                    <SubLi>
+                      <div css={[tw`space-x-1`]}>
+                        {tags.slice(0, 2).map((tag) => (
+                          <Chip
+                            sx={{
+                              bgcolor: "#afc5f23f",
+                              color: "#062666",
+                            }}
+                            key={tag}
+                            label={tag}
+                          />
+                        ))}
+                        {tags.length > 2 && <span>...</span>}
+                      </div>
+                    </SubLi>
+                    <SubLi>
+                      <p className="small">
+                        <Currency quantity={price} currency="NGN" />
+                      </p>
+                    </SubLi>
+                    <SubLi>
+                      <IconButton>
+                        <HamburgerSVG />
+                      </IconButton>
+                    </SubLi>
                   </Ul>
-               </Product>
-            )}
-
-            {products.length === 0 && (
-               <p css={[tw`text-center text-textBg-light`]}>
-                  You have no products
-               </p>
-            )}
-
-            {products
-               ?.slice(sliceNum || 0)
-               .map(({ id, productName, price, tags, image }, index) => {
-                  return (
-                     <div key={id}>
-                        <Product>
-                           <IconButton>
-                              <ChedckedSVG />
-                           </IconButton>
-                           <Ul>
-                              <SubLi>
-                                 <p className='small'>{index + 1}</p>
-                              </SubLi>
-                              <SubLi>
-                                 <ImageWrapper>
-                                    <Image
-                                       src={
-                                          image ||
-                                          'https://via.placeholder.com/44'
-                                       }
-                                       layout='fill'
-                                       className='productImage'
-                                       alt={productName}
-                                    />
-                                 </ImageWrapper>
-                              </SubLi>
-                              <SubLi>
-                                 <p className='small'>{productName}</p>
-                              </SubLi>
-                              <SubLi>
-                                 <div css={[tw`space-x-1`]}>
-                                    {tags.slice(0, 2).map((tag) => (
-                                       <Chip
-                                          sx={{
-                                             bgcolor: '#afc5f23f',
-                                             color: '#062666',
-                                          }}
-                                          key={tag}
-                                          label={tag}
-                                       />
-                                    ))}
-                                    {tags.length > 2 && <span>...</span>}
-                                 </div>
-                              </SubLi>
-                              <SubLi>
-                                 <p className='small'>
-                                    <Currency quantity={price} currency='NGN' />
-                                 </p>
-                              </SubLi>
-                              <SubLi>
-                                 <IconButton>
-                                    <HamburgerSVG />
-                                 </IconButton>
-                              </SubLi>
-                           </Ul>
-                        </Product>
-                     </div>
-                  );
-               })}
-         </div>
-      </>
-   );
+                </Product>
+              </div>
+            );
+          })}
+      </div>
+    </>
+  );
 };
 
 // Tailwind Styles
