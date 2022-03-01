@@ -17,6 +17,12 @@ import TaggedTextField from './TaggedTextfield.jsx';
 import { addProduct } from '../firebase/products.firebase';
 import PlusOutlinedSVG from '../../public/svg/plusoutline.svg';
 import SelectMediaPlaceholderSVG from '../../public/svg/selectMediaPlaceholder.svg';
+import {
+   FileItem,
+   FileItemContainer,
+   FullScreenPreview,
+   InputButton,
+} from '@dropzone-ui/react';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -38,6 +44,7 @@ const AddProductDashboard = () => {
          task: 'All Products',
       },
    ]);
+   const [imgSource, setImgSource] = useState(false);
 
    const user = useSelector((state) => state.user.user.uid);
 
@@ -82,6 +89,16 @@ const AddProductDashboard = () => {
       );
    };
 
+   const updateFiles = (incommingFiles) => {
+      let newMedia = [...media];
+      newMedia = newMedia.concat(incommingFiles);
+      setMedia(newMedia);
+   };
+
+   const onDelete = (id) => {
+      setMedia(media.filter((x) => x.id !== id));
+   };
+
    // function handleSelecetedTags(items) {
    //    // console.log(items);
    // }
@@ -117,37 +134,52 @@ const AddProductDashboard = () => {
                <Wrapper>
                   <UploadMediaText>Upload Media</UploadMediaText>
 
-                  <Div>
-                     <IconButton>
-                        <label htmlFor='contained-button-file'>
-                           <Input
-                              accept='image/*, video/*'
-                              id='contained-button-file'
-                              multiple
-                              type='file'
-                           />
-                           <SelectMediaPlaceholderSVG />
-                        </label>
-                     </IconButton>
+                  <FileItemContainer view='list'>
+                     <Div>
+                        {/* upload button */}
+                        <IconButton tw='overflow-hidden rounded-2xl'>
+                           <label htmlFor='contained-button-file'>
+                              <InputButton
+                                 onChange={updateFiles}
+                                 label='browse images...'
+                                 accept='image/*,video/*'
+                                 multiple
+                                 style={{
+                                    height: '100%',
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    opacity: 0,
+                                    width: '100%',
+                                 }}
+                              />
+                              <SelectMediaPlaceholderSVG />
+                           </label>
+                        </IconButton>
 
-                     <ImageWrapper>
-                        <Image
-                           src='https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
-                           layout='fill'
-                           objectFit='cover'
-                           alt='some pics'
+                        {/* list */}
+                        {media.map((validatedFile) => (
+                           <ImageWrapper key={validatedFile.id}>
+                              <FileItem
+                                 {...validatedFile}
+                                 onDelete={onDelete}
+                                 onSee={(src) => {
+                                    setImgSource(src);
+                                 }}
+                                 preview
+                                 hd
+                                 style={{ width: 'inherit', margin: '0' }}
+                                 //localization={"ES-es"}
+                              />
+                           </ImageWrapper>
+                        ))}
+                        <FullScreenPreview
+                           imgSource={imgSource}
+                           openImage={imgSource}
+                           onClose={(e) => setImgSource(undefined)}
                         />
-                     </ImageWrapper>
-
-                     <ImageWrapper>
-                        <Image
-                           src='https://images.pexels.com/photos/9532175/pexels-photo-9532175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
-                           layout='fill'
-                           objectFit='cover'
-                           alt='some pics'
-                        />
-                     </ImageWrapper>
-                  </Div>
+                     </Div>
+                  </FileItemContainer>
                </Wrapper>
 
                {/* Editor */}

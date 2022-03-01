@@ -187,3 +187,24 @@ h6 {
 .activeSettings {
    border: 2px solid #25307e;
 }
+
+.file-item-full-container-container .file-item-icon-container {
+   width: inherit !important;
+}
+
+.file-item-full-container-container .file-item-icon-container .img-container {
+   width: 100% !important;
+}
+
+.file-item-full-container-container
+   .file-item-icon-container
+   .file-item-footer {
+   width: 100% !important;
+ position: absolute;  
+ bottom: 14px;
+ padding: 0 4px;
+}
+
+.file-item-full-container-container .file-item-icon-container .info-container .status-close {
+   width: 100% !important;
+}
