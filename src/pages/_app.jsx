@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
             <NextProgress height={5} color='#FA5020' />
             <GlobalStyles />
             <Component {...pageProps} />
-            <ToastContainer theme='colored' />
+            <ToastContainer />
          </Provider>
       </>
    );
